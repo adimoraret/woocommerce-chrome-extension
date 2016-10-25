@@ -9,7 +9,7 @@
     "remove-dist": "node_modules/.bin/rimraf ./dist",
     "build-html": "node_modules/.bin/babel-node tools/buildHtml.js",
     "build-manifest": "node_modules/.bin/babel-node tools/buildManifest.js",
-    "deploy-images" : "node_modules/.bin/babel-node tools/copyImages.js",
+    "deploy-images": "node_modules/.bin/babel-node tools/copyImages.js",
     "prebuild": "npm run clean-dist",
     "build": "npm-run-all --parallel build-html build-manifest deploy-images"
   },
@@ -33,6 +33,7 @@
     "colors": "^1.1.2",
     "npm-run-all": "^3.1.1",
     "react": "^15.3.2",
-    "rimraf": "^2.5.4"
+    "rimraf": "^2.5.4",
+    "webpack": "^1.13.2"
   }
 }
