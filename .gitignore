@@ -1,2 +1,2 @@
-#Dist folder since it is the deployment folder
 dist/**
+node_modules/**
