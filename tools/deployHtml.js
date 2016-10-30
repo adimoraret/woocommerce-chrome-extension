@@ -19,5 +19,3 @@ function buildHtml(sourceHtmlFile, destHtmlFile) {
 }
 
 buildHtml('src/index.html','dist/index.html');
-buildHtml('src/options.html', 'dist/options.html');
-buildHtml('src/popup.html', 'dist/popup.html');

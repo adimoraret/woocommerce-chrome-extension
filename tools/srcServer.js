@@ -1,6 +1,6 @@
 import webpack from 'webpack';
 import path from 'path';
-import config from '../webpack.config.dev';
+import config from '../webpack.config';
 
 /* eslint-disable no-console */
 
