@@ -1,4 +1,5 @@
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
+import './styles.css';
 import 'font-awesome-webpack';
 import React from 'react';
 import {Provider} from 'react-redux';
@@ -10,5 +11,5 @@ render(
   <Provider>
     <Router history={browserHistory} routes={routes} />
   </Provider>,
-  document.getElementById('App')
+  document.getElementById('content')
 );
