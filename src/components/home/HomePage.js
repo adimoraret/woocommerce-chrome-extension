@@ -1,10 +1,14 @@
 import React from 'react';
 import BriefInformation from '../BriefInformation/BriefInformation';
+import ProductInformation from '../ProductInformation/ProductInformation';
 
 class HomePage extends React.Component {
   render() {
     return (
-      <BriefInformation />
+        <div>
+            <BriefInformation />
+            <ProductInformation />
+        </div>
     );
   }
 }
