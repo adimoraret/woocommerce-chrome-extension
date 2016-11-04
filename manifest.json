@@ -11,8 +11,7 @@
     },
 
     "permissions": [
-        "http://*.codetrest.com/",
-        "https://*.codetrest.com/"
+        "https://*/*"
     ],
 
     "options_page" : "options.html",
