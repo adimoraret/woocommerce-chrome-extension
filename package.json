@@ -28,6 +28,7 @@
   "license": "ISC",
   "homepage": "https://bitbucket.org/codetrest/woocommerce-chrome-extension#readme",
   "devDependencies": {
+    "axios": "^0.15.2",
     "babel-cli": "^6.18.0",
     "babel-core": "^6.18.0",
     "babel-loader": "^6.2.5",

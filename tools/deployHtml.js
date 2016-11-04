@@ -18,4 +18,15 @@ function buildHtml(sourceHtmlFile, destHtmlFile) {
     });
 }
 
+function createEmptyFile(destFile){
+    fs.writeFile(destFile, "", function(err) {
+        if(err) {
+            return console.log(err);
+        }
+        console.log(`Generating ${destFile}`.green);
+    });
+}
+
+
 buildHtml('src/index.html','dist/index.html');
+createEmptyFile('dist/options.html');

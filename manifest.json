@@ -10,6 +10,11 @@
         "default_popup" : "popup.html"
     },
 
+    "permissions": [
+        "http://*.codetrest.com/",
+        "https://*.codetrest.com/"
+    ],
+
     "options_page" : "options.html",
     "options_ui": {
         "chrome_style": true,
