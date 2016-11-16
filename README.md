@@ -24,4 +24,8 @@ WooCommerce Goolge Chrome Extension - Work in Progress
 
 ### Miscellaneous ###
 
-* Generate map files: npm run deploy-mapfiles
+* Generate map files: 
+```
+#!bash
+npm run deploy-mapfiles
+```
