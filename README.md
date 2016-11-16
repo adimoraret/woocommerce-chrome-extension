@@ -11,12 +11,18 @@ WooCommerce Goolge Chrome Extension - Work in Progress
 * Miscellaneous
 
 ### Install ###
-
-* npm install
+* Install npm and then run the following command
+```
+#!bash
+npm install
+```
 
 ### Run ###
-
-* npm start
+* Run start
+```
+#!bash
+npm start
+```
 
 ### Build & Deploy ###
 * Run build task
@@ -25,13 +31,10 @@ WooCommerce Goolge Chrome Extension - Work in Progress
 npm run build
 ```
 * Run build task silent
-
 ```
-#!powershell
-
+#!bash
 npm run build -s
 ```
-
 
 ### Miscellaneous ###
 * Generate map files: 
