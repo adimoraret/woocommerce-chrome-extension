@@ -4,14 +4,27 @@ import colors from 'colors';
 
 /*eslint-disable no-console */
 function buildHtml(sourceHtmlFile, destHtmlFile) {
+    
+    function changeBundleLocation($){
+        var scriptNode = $('script')[0];
+        scriptNode.attribs["src"] = "/scripts/bundle.js";
+    }
+
+    function addStylesheetNode($){
+        var styleNode = $('<link rel="stylesheet" href="/scripts/styles.css"/>');
+         $('head').append(styleNode);
+    }
+    
     fs.readFile(sourceHtmlFile, 'utf8', (err, markup) => {
         if (err) {
             return console.log(err);
         }
         const $ = cheerio.load(markup);
+        changeBundleLocation($);
+        addStylesheetNode($);
         fs.writeFile(destHtmlFile, $.html(), 'utf8', function (err) {
             if (err) {
-            return console.log(err);
+                return console.log(err);
             }
             console.log(`Generating ${destHtmlFile}`.green);
         });
