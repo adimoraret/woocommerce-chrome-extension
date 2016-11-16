@@ -37,7 +37,7 @@ npm run build -s
 ```
 
 ### Miscellaneous ###
-* Generate map files: 
+* In order to debug ES6 code, we need to generate map files: 
 ```
 #!bash
 npm run deploy-mapfiles
