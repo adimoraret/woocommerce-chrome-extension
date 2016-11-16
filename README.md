@@ -19,11 +19,21 @@ WooCommerce Goolge Chrome Extension - Work in Progress
 * npm start
 
 ### Build & Deploy ###
+* Run build task
+```
+#!bash
+npm run build
+```
+* Run build task silent
 
-* npm run build
+```
+#!powershell
+
+npm run build -s
+```
+
 
 ### Miscellaneous ###
-
 * Generate map files: 
 ```
 #!bash
