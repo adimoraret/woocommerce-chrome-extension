@@ -10,7 +10,7 @@ const ProductListRow = ({product}) => {
 };
 
 ProductListRow.propTypes = {
-  course: PropTypes.object.isRequired
+  product: PropTypes.object.isRequired
 };
 
 export default ProductListRow;

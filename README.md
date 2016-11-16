@@ -1,29 +1,27 @@
 # README #
 
-This README would normally document whatever steps are necessary to get your application up and running.
+WooCommerce Goolge Chrome Extension - Work in Progress
 
-### What is this repository for? ###
 
-* Quick summary
-* Version
-* [Learn Markdown](https://bitbucket.org/tutorials/markdowndemo)
+### Summary ###
 
-### How do I get set up? ###
+* Install
+* Run
+* Build & Deploy
+* Miscellaneous
 
-* Summary of set up
-* Configuration
-* Dependencies
-* Database configuration
-* How to run tests
-* Deployment instructions
+### Install ###
 
-### Contribution guidelines ###
+* npm install
 
-* Writing tests
-* Code review
-* Other guidelines
+### Run ###
 
-### Who do I talk to? ###
+* npm start
 
-* Repo owner or admin
-* Other community or team contact
+### Build & Deploy ###
+
+* npm run build
+
+### Miscellaneous ###
+
+* Generate map files: npm run deploy-mapfiles
