@@ -11,17 +11,34 @@ WooCommerce Goolge Chrome Extension - Work in Progress
 * Miscellaneous
 
 ### Install ###
-
-* npm install
+* Install npm and then run the following command
+```
+#!bash
+npm install
+```
 
 ### Run ###
-
-* npm start
+* Run start
+```
+#!bash
+npm start
+```
 
 ### Build & Deploy ###
-
-* npm run build
+* Run build task
+```
+#!bash
+npm run build
+```
+* Run build task silent
+```
+#!bash
+npm run build -s
+```
 
 ### Miscellaneous ###
-
-* Generate map files: npm run deploy-mapfiles
+* In order to debug ES6 code, we need to generate map files: 
+```
+#!bash
+npm run deploy-mapfiles
+```
