@@ -27,7 +27,8 @@ export default {
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin()
+    new webpack.NoErrorsPlugin(),
+    new webpack.SourceMapDevToolPlugin()
   ],
   module: {
     loaders: [
