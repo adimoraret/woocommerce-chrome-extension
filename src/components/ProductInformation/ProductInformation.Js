@@ -13,10 +13,19 @@ render() {
     const {products} = this.props;
 
     return (
-      <div>
-        <h1>Products</h1>
-        <ProductList products={products}/>
-      </div>
+      <article className="col-sm-12 col-md-12 col-lg-6">
+        <div className="jarviswidget jarviswidget-color-greenLight jarviswidget-sortable">
+          <header role="heading">
+            <span className="widget-icon">
+              <i className="fa fa-table"></i>
+            </span>                
+            <h2>Products</h2>                
+          </header>
+          <div role="content">
+            <ProductList products={products}/>
+          </div>
+        </div>
+      </article>      
     );
   }
 
