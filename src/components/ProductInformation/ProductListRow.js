@@ -5,6 +5,19 @@ const ProductListRow = ({product}) => {
     <tr>
       <td>{product.id}</td>
       <td>{product.name}</td>
+      <td>
+        <div className="btn-group pull-right margin-10">
+          <button className="btn btn-info btn-xs">
+            <i className="fa-fw fa fa-info"></i>
+          </button>
+          <button className="btn btn-primary btn-xs">
+            <i className="fa fa-pencil"></i>
+          </button>
+          <button className="btn btn-danger btn-xs ">
+            <i className="fa fa-times"></i>
+          </button>      
+        </div>
+      </td>
     </tr>
   );
 };

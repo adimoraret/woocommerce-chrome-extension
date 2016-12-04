@@ -13,6 +13,7 @@ const ProductList = ({products}) => {
           <tr>
             <th>Id</th>
             <th>Name</th>
+            <th>&nbsp;</th>
           </tr>
           </thead>
           <tbody>
