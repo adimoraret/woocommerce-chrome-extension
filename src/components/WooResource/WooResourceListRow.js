@@ -1,10 +1,11 @@
 import React, {PropTypes} from 'react';
 
-const ProductListRow = ({product}) => {
-  return (
+const WooResourceListRow = ({columns, resource}) => {
+  return(
     <tr>
-      <td>{product.id}</td>
-      <td>{product.name}</td>
+        {columns.map(column =>
+          <td key={column.order}>{resource[column.fieldName]}</td>
+        )}
       <td>
         <div className="btn-group pull-right margin-10">
           <button className="btn btn-info btn-xs">
@@ -22,8 +23,9 @@ const ProductListRow = ({product}) => {
   );
 };
 
-ProductListRow.propTypes = {
-  product: PropTypes.object.isRequired
+WooResourceListRow.propTypes = {
+  columns: PropTypes.array.isRequired,
+  resource: PropTypes.object.isRequired
 };
 
-export default ProductListRow;
+export default WooResourceListRow;

@@ -1,8 +1,6 @@
 import React from 'react';
 import BriefInformation from '../BriefInformation/BriefInformation';
-import ProductInformation from '../ProductInformation/ProductInformation';
-import CouponInformation from '../CouponInformation/CouponInformation';
-
+import WooResource from '../WooResource/WooResource';
 
 class HomePage extends React.Component {
   render() {
@@ -11,8 +9,7 @@ class HomePage extends React.Component {
             <BriefInformation />
             <section id="widget-grid">
               <div className="row">
-                <ProductInformation />
-                <CouponInformation />
+                <WooResource />
               </div>
             </section>
         </div>

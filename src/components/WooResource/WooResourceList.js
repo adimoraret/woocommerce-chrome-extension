@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
-import ProductListRow from './ProductListRow';
+import WooResourceListRow from './WooResourceListRow';
 
-const ProductList = ({products}) => {
+const WooResourceList = ({columns, rows}) => {
   return (
     <div className="widget-body no-padding">
       <div className="alert alert-info no-margin fade in">
@@ -11,15 +11,16 @@ const ProductList = ({products}) => {
         <table className="table table-hover">
           <thead>
           <tr>
-            <th>Id</th>
-            <th>Name</th>
+            {columns.map(column =>
+              <th key={column.order}>{column.displayName}</th>
+            )}
             <th>&nbsp;</th>
           </tr>
           </thead>
           <tbody>
-          {products.map(product =>
-            <ProductListRow key={product.id} product={product}/>
-          )}
+              {rows.map(row =>
+                <WooResourceListRow key={row.id} columns={columns} resource={row}/>
+              )}
           </tbody>
         </table>
       </div>
@@ -27,8 +28,9 @@ const ProductList = ({products}) => {
   );
 };
 
-ProductList.propTypes = {
-  products: PropTypes.array.isRequired
+WooResourceList.propTypes = {
+  columns: PropTypes.array.isRequired,
+  rows: PropTypes.array.isRequired  
 };
 
-export default ProductList;
+export default WooResourceList;
