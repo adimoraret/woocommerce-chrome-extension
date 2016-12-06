@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as wooResourceActions from '../../actions/wooResourceActions';
 import WooResourceList from './WooResourceList';
+import * as types from '../../actions/actionTypes'
 
 class WooResouce extends React.Component {
   constructor(props, context) {
@@ -31,16 +32,33 @@ render() {
 }
 
 WooResouce.propTypes = {
-  title: PropTypes.string.isRequired,
-  columns: PropTypes.array.isRequired,
-  rows: PropTypes.array.isRequired
+  ResourceType: PropTypes.string.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
+ switch (ownProps.ResourceType) {
+   case types.LOAD_PRODUCTS.NAME:
+      return getProducts(state);
+   case types.LOAD_COUPONS.NAME:
+      return getCoupons(state); 
+   default:
+      return {};
+  }
+}
+
+function getProducts(state){
   return {
     title: state.products.title,
     columns: state.products.columns,
     rows: state.products.rows
+  };
+}
+
+function getCoupons(state){
+  return {
+    title: state.coupons.title,
+    columns: state.coupons.columns,
+    rows: state.coupons.rows
   };
 }
 
