@@ -4,13 +4,13 @@ import * as types from '../actions/actionTypes';
 export default {
   products: 
   {
-    title: "My title 1",
-    columns:getResourceColumns(types.LOAD_PRODUCTS_SUCCESS),
+    title: "Products",
+    columns:getResourceColumns(types.LOAD_PRODUCTS.NAME),
     rows:[] 
   },
   coupons:   {
-    title: "My title 2",
-    columns:["a", "b", "c"],
+    title: "Coupons",
+    columns:getResourceColumns(types.LOAD_COUPONS.NAME),
     rows:[]
   },
   ajaxCallsInProgress: 0

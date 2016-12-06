@@ -3,7 +3,7 @@ import initialState from './initialState';
 
 export default function productReducer(state = initialState.products, action) {
   switch (action.type) {
-    case types.LOAD_PRODUCTS_SUCCESS:
+    case types.LOAD_PRODUCTS.SUCCESS:
       return action.resource;
 
     default:

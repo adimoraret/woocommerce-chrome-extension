@@ -4,7 +4,7 @@ import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 import axios from 'axios';
 
 export function loadSuccess(resourceType, resource) {
-  return { type: resourceType, resource};
+  return { type: resourceType.SUCCESS, resource};
 }
 
 export function loadWooResource(resourceType) {
@@ -19,7 +19,7 @@ export function loadWooResource(resourceType) {
           .then(function(response) {
             const rsp = {
               title: "My Updated title",
-              columns:getResourceColumns(resourceType),
+              columns:getResourceColumns(resourceType.NAME),
               rows: response.data
             };
             dispatch(loadSuccess(resourceType, rsp));

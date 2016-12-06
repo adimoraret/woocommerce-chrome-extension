@@ -10,6 +10,7 @@ class HomePage extends React.Component {
             <section id="widget-grid">
               <div className="row">
                 <WooResource />
+                <WooResource />                
               </div>
             </section>
         </div>
