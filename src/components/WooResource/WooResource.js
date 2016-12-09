@@ -1,9 +1,5 @@
-import React, {PropTypes} from 'react';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
-import * as wooResourceActions from '../../actions/wooResourceActions';
+import React from 'react';
 import WooResourceList from './WooResourceList';
-import * as types from '../../actions/actionTypes'
 
 class WooResouce extends React.Component {
   constructor(props, context) {
@@ -28,44 +24,6 @@ render() {
       </article>      
     );
   }
-
 }
 
-WooResouce.propTypes = {
-  ResourceType: PropTypes.string.isRequired
-};
-
-function mapStateToProps(state, ownProps) {
- switch (ownProps.ResourceType) {
-   case types.LOAD_PRODUCTS.NAME:
-      return getProducts(state);
-   case types.LOAD_COUPONS.NAME:
-      return getCoupons(state); 
-   default:
-      return {};
-  }
-}
-
-function getProducts(state){
-  return {
-    title: state.products.title,
-    columns: state.products.columns,
-    rows: state.products.rows
-  };
-}
-
-function getCoupons(state){
-  return {
-    title: state.coupons.title,
-    columns: state.coupons.columns,
-    rows: state.coupons.rows
-  };
-}
-
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(wooResourceActions, dispatch)
-  };
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(WooResouce);
+export default WooResouce;

@@ -1,5 +1,4 @@
 import {getWooResourceUrl} from '../api/restApi';
-import {getResourceColumns} from '../api/restApi';
 import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 import axios from 'axios';
 
@@ -18,8 +17,6 @@ export function loadWooResource(resourceType) {
         })
           .then(function(response) {
             const rsp = {
-              title: "My Updated title",
-              columns:getResourceColumns(resourceType.NAME),
               rows: response.data
             };
             dispatch(loadSuccess(resourceType, rsp));
