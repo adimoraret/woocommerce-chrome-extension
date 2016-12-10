@@ -7,7 +7,6 @@ export default function couponReducer(state = initialState.coupons, action) {
       return Object.assign({}, state, {
         rows: action.resource.rows
       })
-
     default:
       return state;
   }

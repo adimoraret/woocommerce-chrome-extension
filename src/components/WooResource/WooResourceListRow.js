@@ -1,10 +1,21 @@
 import React, {PropTypes} from 'react';
 
+const createCellContent = (column, resource) => {
+  if (!resource[column.link]) {
+    return resource[column.fieldName];
+  }
+  return(
+    <a href={resource[column.link]} title={resource[column.title]}>{resource[column.fieldName]}</a> 
+  );
+}
+
 const WooResourceListRow = ({columns, resource}) => {
   return(
     <tr>
         {columns.map(column =>
-          <td key={column.order}>{resource[column.fieldName]}</td>
+          <td key={column.order}>
+            {createCellContent(column, resource)}
+          </td>
         )}
       <td>
         <div className="btn-group pull-right margin-10">

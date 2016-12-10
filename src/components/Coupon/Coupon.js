@@ -6,7 +6,6 @@ import * as wooResourceActions from '../../actions/wooResourceActions';
 class Coupon extends WooResource {
     constructor(props, context) {
         super(props, context);
-        this.render();
     }
 }
 

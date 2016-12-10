@@ -4,19 +4,18 @@ import {createColumn} from '../components/Common/Resource';
 
 function getProductsColumns(){
     return [
-        createColumn("id", "Id", 1),
-        createColumn("name", "Name", 2),
-        createColumn("permalink", "Link", 3),
-        createColumn("price", "Price", 4)        
+        createColumn("id", "Id", null, null, 1),
+        createColumn("name", "Name", "permalink", "description", 2),
+        createColumn("price", "Price", null, null, 3)        
     ];
 };
 
 function getCouponsColumns(){
     return [
-        createColumn("id", "Id", 1),
-        createColumn("code", "Code", 2),
-        createColumn("date_created", "Created Date", 3),
-        createColumn("amount", "Amount", 4)        
+        createColumn("id", "Id", null, null, 1),
+        createColumn("code", "Code", null, null, 2),
+        createColumn("date_created", "Created Date", null, null, 3),
+        createColumn("amount", "Amount", null, null, 4)        
     ];
 }
 
