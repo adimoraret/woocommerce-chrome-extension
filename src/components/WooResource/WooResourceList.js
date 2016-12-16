@@ -15,7 +15,7 @@ const WooResourceList = ({columns, rows, visibleLoader}) => {
             {columns.map(column =>
               <th key={column.order}>{column.displayName}</th>
             )}
-            <th>&nbsp;</th>
+            <th></th>
           </tr>
           </thead>
           <tbody>
