@@ -17,7 +17,8 @@ export function loadWooResource(resourceType) {
         })
           .then(function(response) {
             const rsp = {
-              rows: response.data
+              rows: response.data,
+              visibleLoader: false
             };
             dispatch(loadSuccess(resourceType, rsp));
           })

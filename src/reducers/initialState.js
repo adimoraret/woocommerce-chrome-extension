@@ -24,12 +24,14 @@ export default {
   {
     title: "Products",
     columns: getProductsColumns(),
-    rows:[] 
+    rows:[],
+    visibleLoader: true
   },
   coupons:   {
     title: "Coupons",
     columns: getCouponsColumns(),
-    rows:[]
+    rows:[],
+    visibleLoader: true
   },
   ajaxCallsInProgress: 0
 };

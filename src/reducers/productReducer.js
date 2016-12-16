@@ -5,7 +5,8 @@ export default function productReducer(state = initialState.products, action) {
   switch (action.type) {
     case types.LOAD_PRODUCTS.SUCCESS:
       return Object.assign({}, state, {
-        rows: action.resource.rows
+        rows: action.resource.rows,
+        visibleLoader: action.resource.visibleLoader
       })
 
     default:

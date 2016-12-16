@@ -7,7 +7,7 @@ class WooResouce extends React.Component {
   }
 
 render() {
-    const {title,columns,rows} = this.props;
+    const {title,columns,rows,visibleLoader} = this.props;
     return (
       <article className="col-sm-12 col-md-12 col-lg-6">
         <div className="jarviswidget jarviswidget-color-greenLight jarviswidget-sortable">
@@ -18,7 +18,7 @@ render() {
             <h2>{title}</h2>                
           </header>
           <div role="content">
-            <WooResourceList columns={columns} rows={rows}/>
+            <WooResourceList columns={columns} rows={rows} visibleLoader={visibleLoader}/>
           </div>
         </div>
       </article>      

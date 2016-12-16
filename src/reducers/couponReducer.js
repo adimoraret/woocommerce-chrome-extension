@@ -5,7 +5,8 @@ export default function couponReducer(state = initialState.coupons, action) {
   switch (action.type) {
     case types.LOAD_COUPONS.SUCCESS:
       return Object.assign({}, state, {
-        rows: action.resource.rows
+        rows: action.resource.rows,
+        visibleLoader: action.resource.visibleLoader
       })
     default:
       return state;

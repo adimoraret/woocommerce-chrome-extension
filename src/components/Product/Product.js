@@ -13,7 +13,8 @@ function mapStateToProps(state, ownProps) {
  return {
     title: state.products.title,
     columns: state.products.columns,
-    rows: state.products.rows
+    rows: state.products.rows,
+    visibleLoader: state.products.visibleLoader
   };
 }
 
