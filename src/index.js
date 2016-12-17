@@ -11,8 +11,8 @@ import * as types from './actions/actionTypes';
 import {loadWooResource} from './actions/wooResourceActions';
 
 const store = configureStore();
-store.dispatch(loadWooResource(types.LOAD_PRODUCTS));
-store.dispatch(loadWooResource(types.LOAD_COUPONS));
+store.dispatch(loadWooResource(types.PRODUCT_ACTION.BULK.LOAD));
+store.dispatch(loadWooResource(types.COUPON_ACTION.BULK.LOAD));
 
 render(
   <Provider store={store}>

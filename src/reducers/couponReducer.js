@@ -3,7 +3,7 @@ import initialState from './initialState';
 
 export default function couponReducer(state = initialState.coupons, action) {
   switch (action.type) {
-    case types.LOAD_COUPONS.SUCCESS:
+    case types.COUPON_ACTION.BULK.LOAD.SUCCESS:
       return Object.assign({}, state, {
         rows: action.resource.rows,
         visibleLoader: action.resource.visibleLoader

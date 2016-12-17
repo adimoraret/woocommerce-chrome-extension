@@ -3,7 +3,7 @@ import initialState from './initialState';
 
 export default function productReducer(state = initialState.products, action) {
   switch (action.type) {
-    case types.LOAD_PRODUCTS.SUCCESS:
+    case types.PRODUCT_ACTION.BULK.LOAD.SUCCESS:
       return Object.assign({}, state, {
         rows: action.resource.rows,
         visibleLoader: action.resource.visibleLoader
