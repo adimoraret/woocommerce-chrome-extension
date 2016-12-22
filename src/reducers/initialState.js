@@ -33,5 +33,8 @@ export default {
     rows:[],
     visibleLoader: true
   },
-  ajaxCallsInProgress: 0
+  ajaxCallsInProgress: 0,
+  modal: {
+      visible: false
+  }
 };

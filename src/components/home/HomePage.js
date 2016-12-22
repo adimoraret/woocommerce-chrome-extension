@@ -2,6 +2,7 @@ import React from 'react';
 import BriefInformation from '../BriefInformation/BriefInformation';
 import Product from '../Product/Product';
 import Coupon from '../Coupon/Coupon';
+import WooModal from '../WooModal/WooModal';
 
 class HomePage extends React.Component {
   render() {
@@ -11,7 +12,8 @@ class HomePage extends React.Component {
             <section id="widget-grid">
               <div className="row">
                 <Product /> 
-                <Coupon />                                               
+                <Coupon />
+                <WooModal />
               </div>
             </section>
         </div>

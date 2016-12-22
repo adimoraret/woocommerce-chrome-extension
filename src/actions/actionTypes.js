@@ -24,7 +24,7 @@ export const PRODUCT_ACTION = {
             FAIL: "EDIT_PRODUCT_FAIL"            
         } 
     }
-}
+};
 
 export const COUPON_ACTION = {
     BULK: {
@@ -49,4 +49,9 @@ export const COUPON_ACTION = {
             FAIL: "EDIT_COUPON_FAIL"            
         } 
     }
+};
+
+export const MODAL_ACTION = {
+    OPEN: "OPEN_MODAL",
+    CLOSE: "CLOSE_MODAL"
 };
