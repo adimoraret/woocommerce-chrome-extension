@@ -35,6 +35,7 @@ export default {
   },
   ajaxCallsInProgress: 0,
   modal: {
-      visible: false
+      visible: false,
+      title: ""
   }
 };

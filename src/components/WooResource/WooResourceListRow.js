@@ -18,7 +18,7 @@ class WooResourceListRow extends React.Component {
   }
 
   openModal(){
-    this.props.dispatch(modalAction.openModal());
+    this.props.dispatch(modalAction.openModal("some title"));
   }
 
   render() {
@@ -56,7 +56,8 @@ WooResourceListRow.propTypes = {
 
 //This seems a hack to have the dispatch available
 function mapStateToProps(state, ownProps) {
- return {};
+ return {
+ };
 }
 
 export default connect(mapStateToProps)(WooResourceListRow);

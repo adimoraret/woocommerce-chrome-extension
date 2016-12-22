@@ -26,7 +26,7 @@ class WooModal extends React.Component {
         <div className="static-modal">
             <Modal.Dialog>
             <Modal.Header>
-                <Modal.Title>Modal title</Modal.Title>
+                <Modal.Title>{title}</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
@@ -45,12 +45,14 @@ class WooModal extends React.Component {
 }
 
 WooModal.propTypes = {
-  visible: PropTypes.bool.isRequired
+  visible: PropTypes.bool.isRequired,
+  title: PropTypes.string.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
     return {
         visible: state.modal.visible,
+        title: state.modal.title
     };
 }
 

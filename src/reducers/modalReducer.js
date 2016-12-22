@@ -5,7 +5,8 @@ export default function modalReducer(state = initialState.modal, action) {
   switch (action.type) {
     case types.MODAL_ACTION.OPEN:
       return Object.assign({}, state, {
-        visible: true
+        visible: true,
+        title: action.title
       })
     case types.MODAL_ACTION.CLOSE:
       return Object.assign({}, state, {
