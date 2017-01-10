@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import * as modalAction from '../../actions/wooModalActions';
 import {connect} from 'react-redux';
+import config from '../../config/config';
 
 class WooGridRow extends React.Component {
   constructor(props, context) {
@@ -18,11 +19,14 @@ class WooGridRow extends React.Component {
   }
 
   openModal(){
-    this.props.dispatch(modalAction.openModal("some title"));
+    this.props.dispatch(modalAction.openModal(
+      config.resources[this.props.resourceId-1].add.title
+    ));
   }
 
   render() {
-    const {columns, row} = this.props;
+    const {row, resourceId} = this.props;
+    const columns = config.resources[resourceId-1].list.visible_properties;
     return(
         <tr>
             {columns.map(column =>
@@ -50,8 +54,8 @@ class WooGridRow extends React.Component {
 }
 
 WooGridRow.propTypes = {
-  columns: PropTypes.array.isRequired,
-  row: PropTypes.object.isRequired
+  resourceId: PropTypes.number.isRequired,
+  row: PropTypes.object.isRequired 
 };
 
 //This seems a hack to have the dispatch available

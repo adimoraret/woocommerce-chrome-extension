@@ -31,7 +31,7 @@ class WooGridBody extends React.Component {
             <tbody>
                 <Loader visible={visibleLoader} numberOfColumns={columns.length+1}/>
                 {rows.map(row =>
-                  <WooGridRow key={row.id} columns={columns} row={row}/>
+                  <WooGridRow key={row.id} resourceId={resource.id} row={row}/>
                 )}
             </tbody>
           </table>
