@@ -2,8 +2,9 @@ import {getWooResourceUrl} from '../api/restApi';
 import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
 import axios from 'axios';
 
-export function loadSuccess(resourceType, resource) {
-  return { type: resourceType.SUCCESS, resource};
+function loadSuccess(resourceType, response) {
+  response.visibleLoader = false;  
+  return { type: resourceType.SUCCESS, resource: response};
 }
 
 export function loadWooResource(resourceType) {
@@ -17,8 +18,7 @@ export function loadWooResource(resourceType) {
         })
           .then(function(response) {
             const rsp = {
-              rows: response.data,
-              visibleLoader: false
+              rows: response.data
             };
             dispatch(loadSuccess(resourceType, rsp));
           })

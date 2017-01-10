@@ -1,13 +1,9 @@
 import {combineReducers} from 'redux';
-import products from './productReducer';
-import coupons from './couponReducer';
-import ajaxCallsInProgress from './ajaxStatusReducer';
+import reducer_resources from './resourceReducer';
 import modal from './modalReducer';
 
 const rootReducer = combineReducers({
-  products,
-  coupons,
-  ajaxCallsInProgress,
+  reducer_resources,
   modal
 });
 

@@ -2,19 +2,19 @@ import React, {PropTypes} from 'react';
 import * as modalAction from '../../actions/wooModalActions';
 import {connect} from 'react-redux';
 
-class WooResourceListRow extends React.Component {
+class WooGridRow extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.openModal = this.openModal.bind(this);
   }
 
-  createCellContent(column, resource) {
-    if (!resource[column.link]) {
-        return resource[column.fieldName];
+  createCellContent(column, row) {
+    if (!row[column.link]) {
+        return row[column.fieldName];
     }
     return(
-      <a href={resource[column.link]} title={resource[column.title]}>{resource[column.fieldName]}</a> 
-    );   
+      <a href={row[column.link]} title={row[column.title]}>{row[column.fieldName]}</a> 
+    );
   }
 
   openModal(){
@@ -22,12 +22,12 @@ class WooResourceListRow extends React.Component {
   }
 
   render() {
-    const {columns, resource} = this.props;
+    const {columns, row} = this.props;
     return(
         <tr>
             {columns.map(column =>
               <td key={column.order}>
-                {this.createCellContent(column, resource)}
+                {this.createCellContent(column, row)}
               </td>
             )}
           <td>
@@ -49,9 +49,9 @@ class WooResourceListRow extends React.Component {
 
 }
 
-WooResourceListRow.propTypes = {
+WooGridRow.propTypes = {
   columns: PropTypes.array.isRequired,
-  resource: PropTypes.object.isRequired
+  row: PropTypes.object.isRequired
 };
 
 //This seems a hack to have the dispatch available
@@ -60,4 +60,4 @@ function mapStateToProps(state, ownProps) {
  };
 }
 
-export default connect(mapStateToProps)(WooResourceListRow);
+export default connect(mapStateToProps)(WooGridRow);

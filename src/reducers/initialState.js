@@ -1,41 +1,26 @@
-import {getResourceColumns} from '../api/restApi';
-import * as types from '../actions/actionTypes';
-import {createColumn} from '../components/Common/Resource';
 
-function getProductsColumns(){
-    return [
-        createColumn("id", "Id", null, null, 1),
-        createColumn("name", "Name", "permalink", "description", 2),
-        createColumn("price", "Price", null, null, 3)        
-    ];
-};
-
-function getCouponsColumns(){
-    return [
-        createColumn("id", "Id", null, null, 1),
-        createColumn("code", "Code", null, null, 2),
-        createColumn("date_created", "Created Date", null, null, 3),
-        createColumn("amount", "Amount", null, null, 4)        
-    ];
-}
+import config from '../config/config';
 
 export default {
-  products: 
-  {
-    title: "Products",
-    columns: getProductsColumns(),
-    rows:[],
-    visibleLoader: true
-  },
-  coupons:   {
-    title: "Coupons",
-    columns: getCouponsColumns(),
-    rows:[],
-    visibleLoader: true
-  },
-  ajaxCallsInProgress: 0,
+  resources: generateResources(),
   modal: {
       visible: false,
       title: ""
   }
 };
+
+function buildResourceItem(item){
+  let newItem = Object.assign({}, item);
+  newItem.list.items = [];
+  newItem.list.visibleLoader = true;
+  return newItem;
+}
+
+function generateResources(){
+  let resources = [];
+  config.resources.forEach(function(item) {
+    const resourceItem = buildResourceItem(item);
+    resources.push(resourceItem);
+  }, this);
+  return resources;
+}

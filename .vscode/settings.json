@@ -3,5 +3,7 @@
         "map/**": true,
         "node_modules/**": true,
         "dist": true
-    }
+    },
+    "editor.tabSize": 2,
+    "editor.detectIndentation": false
 }
