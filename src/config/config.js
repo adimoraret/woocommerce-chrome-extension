@@ -25,14 +25,6 @@ export default {
           visible_properties: getProductsGridColumns(),
           url: "/wp-json/wc/v1/products"
         },
-        add: {
-          title: "Add new product",
-          url: ""
-        },
-        edit: {
-          title: "Edit product",
-          url: ""
-        },
         view: {
           title: "View product",
           url: ""

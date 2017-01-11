@@ -1,6 +1,6 @@
 import React,{PropTypes} from 'react';
 
-class WooAddModalBody extends React.Component {
+class WooInfoModalBody extends React.Component {
 
   constructor(props, context) {
     super(props, context);
@@ -15,9 +15,9 @@ class WooAddModalBody extends React.Component {
 
 }
 
-WooAddModalBody.propTypes = {
+WooInfoModalBody.propTypes = {
   resourceId: PropTypes.number.isRequired
 };
 
 
-export default WooAddModalBody;
+export default WooInfoModalBody;

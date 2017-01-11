@@ -3,10 +3,10 @@ import {Modal, Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as modalAction from '../../actions/wooModalActions';
-import WooAddModalBody from './WooAddModalBody';
+import WooInfoModalBody from './WooInfoModalBody';
 import config from '../../config/config';
 
-class WooAddModal extends React.Component {
+class WooInfoModal extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.closeModal = this.closeModal.bind(this);
@@ -24,7 +24,7 @@ class WooAddModal extends React.Component {
   }
   
   renderModal(resourceId){
-    const title = config.resources[resourceId-1].add.title;
+    const title = config.resources[resourceId-1].view.title;
     return (
         <div className="static-modal">
             <Modal.Dialog>
@@ -33,7 +33,7 @@ class WooAddModal extends React.Component {
             </Modal.Header>
 
             <Modal.Body>
-                <WooAddModalBody resourceId={resourceId}/>
+                <WooInfoModalBody resourceId={resourceId}/>
             </Modal.Body>
 
             <Modal.Footer>
@@ -47,7 +47,7 @@ class WooAddModal extends React.Component {
   }
 }
 
-WooAddModal.propTypes = {
+WooInfoModal.propTypes = {
   visible: PropTypes.bool.isRequired,
   resourceId: PropTypes.number.isRequired
 };
@@ -59,4 +59,4 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps)(WooAddModal);
+export default connect(mapStateToProps)(WooInfoModal);
