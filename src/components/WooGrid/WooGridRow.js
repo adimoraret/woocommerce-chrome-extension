@@ -19,9 +19,7 @@ class WooGridRow extends React.Component {
   }
 
   openModal(){
-    this.props.dispatch(modalAction.openModal(
-      config.resources[this.props.resourceId-1].add.title
-    ));
+    this.props.dispatch(modalAction.openModal(this.props.resourceId));
   }
 
   render() {

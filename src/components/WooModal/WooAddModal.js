@@ -3,6 +3,8 @@ import {Modal, Button} from 'react-bootstrap';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as modalAction from '../../actions/wooModalActions';
+import WooAddModalBody from './WooAddModalBody';
+import config from '../../config/config';
 
 class WooAddModal extends React.Component {
   constructor(props, context) {
@@ -10,9 +12,9 @@ class WooAddModal extends React.Component {
     this.closeModal = this.closeModal.bind(this);
   }
   render() {
-    const {title,columns,visible} = this.props;
+    const {resourceId,visible} = this.props;
     if (visible) {
-        return this.renderModal(title, columns);
+        return this.renderModal(resourceId);
     }
     return null;
   }
@@ -21,7 +23,8 @@ class WooAddModal extends React.Component {
     this.props.dispatch(modalAction.closeModal());
   }
   
-  renderModal(title, columns){
+  renderModal(resourceId){
+    const title = config.resources[resourceId-1].add.title;
     return (
         <div className="static-modal">
             <Modal.Dialog>
@@ -30,7 +33,7 @@ class WooAddModal extends React.Component {
             </Modal.Header>
 
             <Modal.Body>
-                One fine body...
+                <WooAddModalBody resourceId={resourceId}/>
             </Modal.Body>
 
             <Modal.Footer>
@@ -46,13 +49,13 @@ class WooAddModal extends React.Component {
 
 WooAddModal.propTypes = {
   visible: PropTypes.bool.isRequired,
-  title: PropTypes.string.isRequired
+  resourceId: PropTypes.number.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
     return {
         visible: state.modal.visible,
-        title: state.modal.title
+        resourceId: state.modal.resourceId
     };
 }
 

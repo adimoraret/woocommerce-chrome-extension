@@ -1,7 +1,7 @@
 import * as types from './actionTypes';
 
-export function openModal(title) {
-  return {type: types.MODAL_ACTION.OPEN, title:title};
+export function openModal(resourceId) {
+  return {type: types.MODAL_ACTION.OPEN, resourceId:resourceId};
 }
 
 export function closeModal(action) {

@@ -4,7 +4,7 @@ export default {
   resources: generateResources(),
   modal: {
       visible: false,
-      title: ""
+      resourceId: -1
   }
 };
 
