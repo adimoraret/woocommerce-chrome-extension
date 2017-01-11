@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import * as modalAction from '../../actions/wooModalActions';
 
-class WooModal extends React.Component {
+class WooAddModal extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.closeModal = this.closeModal.bind(this);
@@ -44,7 +44,7 @@ class WooModal extends React.Component {
   }
 }
 
-WooModal.propTypes = {
+WooAddModal.propTypes = {
   visible: PropTypes.bool.isRequired,
   title: PropTypes.string.isRequired
 };
@@ -56,4 +56,4 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps)(WooModal);
+export default connect(mapStateToProps)(WooAddModal);
