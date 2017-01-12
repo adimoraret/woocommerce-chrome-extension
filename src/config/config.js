@@ -31,7 +31,7 @@ export default {
           url: "/wp-json/wc/v1/products/:id"
         },
         delete: {
-          title: "Delete this product:",
+          title: "Delete this product",
           url: ""
         }
     },
@@ -56,7 +56,7 @@ export default {
         url: ""
       },
       delete: {
-        title: "Delete this coupon:",
+        title: "Delete this coupon",
         url: ""
       }
     }  

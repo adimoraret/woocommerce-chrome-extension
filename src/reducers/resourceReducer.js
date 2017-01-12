@@ -11,6 +11,12 @@ export default function resourceReducer(state = initialState.resources, action) 
       return newState;
     }
 
+    case "PRODUCT_INFO_SUCCESS": {
+       let newState =JSON.parse(JSON.stringify(state))
+       newState[0].view.item = action.resource.item;
+       return newState;
+    }
+
     case "COUPON_LIST_SUCCESS": {
       let newState = JSON.parse(JSON.stringify(state))
       newState[1].list.items = action.resource.rows;

@@ -7,3 +7,7 @@ const AUTHENTICATION_PARAMS = `?consumer_key=${CONSUMER_KEY}&consumer_secret=${C
 export function getListFullUrl(resource){
   return `${SITE_URL}${resource.list.url}${AUTHENTICATION_PARAMS}`;
 }
+
+export function getInfoFullUrl(resource, id){
+  return `${SITE_URL}${resource.view.url}${AUTHENTICATION_PARAMS}`.replace(":id", id);
+}

@@ -12,9 +12,9 @@ class WooInfoModal extends React.Component {
     this.closeModal = this.closeModal.bind(this);
   }
   render() {
-    const {resourceId,visible} = this.props;
+    const {resourceId,visible,itemInfo} = this.props;
     if (visible) {
-        return this.renderModal(resourceId);
+        return this.renderModal(resourceId, itemInfo);
     }
     return null;
   }
@@ -23,13 +23,14 @@ class WooInfoModal extends React.Component {
     this.props.dispatch(modalAction.closeModal());
   }
   
-  renderModal(resourceId){
-    const title = config.resources[resourceId-1].view.title;
+  renderModal(resourceId, itemInfo){
+    const selectedResource = config.resources[resourceId - 1];
+    const title = selectedResource.view.title;
     return (
         <div className="static-modal">
             <Modal.Dialog>
             <Modal.Header>
-                <Modal.Title>{title}</Modal.Title>
+                <Modal.Title>{title} - {itemInfo.name}</Modal.Title>
             </Modal.Header>
 
             <Modal.Body>
@@ -53,9 +54,15 @@ WooInfoModal.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
+    let resourceId = state.modal.resourceId;
+    let itemInfo = {};
+    if (resourceId > -1){
+      itemInfo = state.reducer_resources[resourceId - 1].view.item;
+    } 
     return {
         visible: state.modal.visible,
-        resourceId: state.modal.resourceId
+        resourceId: resourceId,
+        itemInfo: itemInfo
     };
 }
 

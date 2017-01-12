@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import * as modalAction from '../../actions/wooModalActions';
 import {connect} from 'react-redux';
 import config from '../../config/config';
+import {loadWooResourceInfo} from '../../actions/wooResourceActions'; 
 
 class WooGridRow extends React.Component {
   constructor(props, context) {
@@ -19,12 +20,16 @@ class WooGridRow extends React.Component {
   }
 
   openModal(){
-    this.props.dispatch(modalAction.openModal(this.props.resourceId));
+    const selectedResource = config.resources[this.props.resourceId - 1];
+    this.props.dispatch(modalAction.openModal(this.props.resourceId));    
+    this.props.dispatch(loadWooResourceInfo(selectedResource, this.props.row["id"]));    
   }
 
   render() {
     const {row, resourceId} = this.props;
-    const columns = config.resources[resourceId-1].list.visible_properties;
+    const selectedResource = config.resources[resourceId-1];
+    const columns = selectedResource.list.visible_properties;
+    const shouldShowInfo = !!selectedResource.view.url;
     return(
         <tr>
             {columns.map(column =>
@@ -34,9 +39,11 @@ class WooGridRow extends React.Component {
             )}
           <td>
             <div className="btn-group pull-right margin-10">
-              <button className="btn btn-info btn-xs" onClick={this.openModal}>
-                <i className="fa-fw fa fa-info"></i>
-              </button>
+               {shouldShowInfo && 
+                <button className="btn btn-info btn-xs" onClick={this.openModal}>
+                  <i className="fa-fw fa fa-info"></i>
+                </button>
+                }
               <button className="btn btn-danger btn-xs ">
                 <i className="fa fa-times"></i>
               </button>      
@@ -53,7 +60,7 @@ WooGridRow.propTypes = {
   row: PropTypes.object.isRequired 
 };
 
-//This seems a hack to have the dispatch available
+//this.props will have the dispatch available
 function mapStateToProps(state, ownProps) {
  return {
  };

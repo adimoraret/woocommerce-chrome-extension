@@ -12,6 +12,7 @@ function buildResourceItem(item){
   let newItem = Object.assign({}, item);
   newItem.list.items = [];
   newItem.list.visibleLoader = true;
+  newItem.view.item = {};
   return newItem;
 }
 
