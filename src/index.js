@@ -7,12 +7,13 @@ import { render } from 'react-dom';
 import { Router, browserHistory } from 'react-router';
 import routes from './routes';
 import configureStore from './store/configureStore';
-import * as types from './actions/actionTypes';
 import {loadWooResource} from './actions/wooResourceActions';
+import config from './config/config';
 
 const store = configureStore();
-store.dispatch(loadWooResource(types.PRODUCT_ACTION.BULK.LOAD));
-store.dispatch(loadWooResource(types.COUPON_ACTION.BULK.LOAD));
+config.resources.map(resource =>
+  store.dispatch(loadWooResource(resource))
+);
 
 render(
   <Provider store={store}>

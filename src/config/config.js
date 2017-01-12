@@ -19,7 +19,8 @@ function getCouponsGridColumns(){
 export default {
     resources : [
       {
-        id: 1,        
+        id: 1,
+        name: "PRODUCT",
         list: {
           title: "Products",
           visible_properties: getProductsGridColumns(),
@@ -27,7 +28,7 @@ export default {
         },
         view: {
           title: "View product",
-          url: ""
+          url: "/wp-json/wc/v1/products/:id"
         },
         delete: {
           title: "Delete this product:",
@@ -36,6 +37,7 @@ export default {
     },
     {
       id: 2,
+      name: "COUPON",      
       list: {
         title: "Coupons",
         visible_properties: getCouponsGridColumns(),

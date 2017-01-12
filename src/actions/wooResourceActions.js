@@ -1,17 +1,15 @@
-import {getWooResourceUrl} from '../api/restApi';
-import {beginAjaxCall, ajaxCallError} from './ajaxStatusActions';
+import {getListFullUrl} from '../api/restApi';
 import axios from 'axios';
 
-function loadSuccess(resourceType, response) {
+function loadSuccess(resource, response) {
   response.visibleLoader = false;  
-  return { type: resourceType.SUCCESS, resource: response};
+  return { type: `${resource.name}_LIST_SUCCESS`, resource: response};
 }
 
-export function loadWooResource(resourceType) {
+export function loadWooResource(resource) {
   return function(dispatch) {
-    dispatch(beginAjaxCall());
     return axios({
-          url: getWooResourceUrl(resourceType),
+          url: getListFullUrl(resource),
           timeout: 20000,
           method: 'get',
           responseType: 'json'
@@ -20,7 +18,7 @@ export function loadWooResource(resourceType) {
             const rsp = {
               rows: response.data
             };
-            dispatch(loadSuccess(resourceType, rsp));
+            dispatch(loadSuccess(resource, rsp));
           })
           .catch(function(response){
             console.log("Error: " + response);
