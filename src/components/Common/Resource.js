@@ -1,4 +1,4 @@
-export function createColumn(fieldName, displayName, link, title, order){
+export function createPropertyObject(fieldName, displayName, link, title, order){
     return {
         fieldName: fieldName, 
         displayName: displayName,

@@ -13,37 +13,31 @@ class WooInfoModal extends React.Component {
   }
   render() {
     const {resourceId,visible,itemInfo} = this.props;
-    if (visible) {
-        return this.renderModal(resourceId, itemInfo);
-    }
-    return null;
+    return this.renderModal(visible, resourceId, itemInfo);
   }
 
   closeModal(){
     this.props.dispatch(modalAction.closeModal());
   }
   
-  renderModal(resourceId, itemInfo){
+  renderModal(isVisible, resourceId, itemInfo){
     const selectedResource = config.resources[resourceId - 1];
+    if (!selectedResource) {
+      return null;
+    }
     const title = selectedResource.view.title;
     return (
-        <div className="static-modal">
-            <Modal.Dialog>
-            <Modal.Header>
-                <Modal.Title>{title} - {itemInfo.name}</Modal.Title>
-            </Modal.Header>
-
-            <Modal.Body>
-                <WooInfoModalBody resourceId={resourceId}/>
-            </Modal.Body>
-
-            <Modal.Footer>
-                <Button onClick={this.closeModal}>Close</Button>
-                <Button bsStyle="primary">Save changes</Button>
-            </Modal.Footer>
-
-            </Modal.Dialog>
-        </div>
+          <Modal show={isVisible} onHide={this.closeModal}>
+              <Modal.Header closeButton>
+                  <Modal.Title>{title} - {itemInfo.name}</Modal.Title>
+              </Modal.Header>
+              <Modal.Body>
+                  <WooInfoModalBody resourceId={resourceId} resourceItemInfo={itemInfo}/>
+              </Modal.Body>
+              <Modal.Footer>
+                  <Button onClick={this.closeModal} bsStyle="primary">Close</Button>
+              </Modal.Footer>
+          </Modal>
     );
   }
 }

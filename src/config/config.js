@@ -1,18 +1,25 @@
-import {createColumn} from '../components/Common/Resource';
+import {createPropertyObject} from '../components/Common/Resource';
 
 function getProductsGridColumns(){
     return [
-        createColumn("id", "Id", null, null, 1),
-        createColumn("name", "Name", "permalink", "description", 2),
-        createColumn("price", "Price", null, null, 3)        
+        createPropertyObject("id", "Id", null, null, 1),
+        createPropertyObject("name", "Name", "permalink", "description", 2),
+        createPropertyObject("price", "Price", null, null, 3)        
     ];
 };
 function getCouponsGridColumns(){
     return [
-        createColumn("id", "Id", null, null, 1),
-        createColumn("code", "Code", null, null, 2),
-        createColumn("date_created", "Created Date", null, null, 3),
-        createColumn("amount", "Amount", null, null, 4)        
+        createPropertyObject("id", "Id", null, null, 1),
+        createPropertyObject("code", "Code", null, null, 2),
+        createPropertyObject("date_created", "Created Date", null, null, 3),
+        createPropertyObject("amount", "Amount", null, null, 4)        
+    ];
+}
+function getProductInfoProperties(){
+    return [
+        createPropertyObject("id", "Id", null, null, 1),
+        createPropertyObject("name", "Name", "permalink", "description", 2),
+        createPropertyObject("price", "Price", null, null, 3)        
     ];
 }
 
@@ -28,7 +35,8 @@ export default {
         },
         view: {
           title: "View product",
-          url: "/wp-json/wc/v1/products/:id"
+          url: "/wp-json/wc/v1/products/:id",
+          visible_properties: getProductInfoProperties(),
         },
         delete: {
           title: "Delete this product",
