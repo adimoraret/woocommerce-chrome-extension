@@ -55,3 +55,11 @@ export function loadWooResourceInfo(resource, id) {
           });
   };
 }
+
+export function showLoader(resource){
+  return function(dispatch) {
+      dispatch(
+        {type: `${resource.name}_LIST_LOAD`, resource: {visible:true}}
+      );
+  }
+}

@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import * as modalAction from '../../actions/wooModalActions';
 import {connect} from 'react-redux';
 import config from '../../config/config';
-import {loadWooResourceInfo} from '../../actions/wooResourceActions'; 
+import {loadWooResourceInfo} from '../../actions/wooResourceActions';
 
 class WooGridRow extends React.Component {
   constructor(props, context) {

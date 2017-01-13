@@ -30,6 +30,20 @@ export default function resourceReducer(state = initialState.resources, action) 
        return newState;
     }
 
+    case "PRODUCT_LIST_LOAD": {
+      let newState =JSON.parse(JSON.stringify(state))
+      newState[0].list.visibleLoader = true;
+      newState[0].list.items = [];
+      return newState;
+    }
+
+    case "COUPON_LIST_LOAD": {
+      let newState =JSON.parse(JSON.stringify(state))
+      newState[1].list.visibleLoader = true;
+      newState[1].list.items = [];      
+      return newState;
+    }    
+
     default:
       return state;
   }
