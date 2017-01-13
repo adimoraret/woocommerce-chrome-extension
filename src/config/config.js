@@ -19,7 +19,21 @@ function getProductInfoProperties(){
     return [
         createPropertyObject("id", "Id", null, null, 1),
         createPropertyObject("name", "Name", "permalink", "description", 2),
-        createPropertyObject("price", "Price", null, null, 3)        
+        createPropertyObject("short_description", "Short Description", null, null, 3),
+        createPropertyObject("description", "Description", null, null, 4),
+        createPropertyObject("sale_price", "Sale Price", null, null, 5),
+        createPropertyObject("price", "Price", null, null, 6),
+        createPropertyObject("stock_quantity", "Stock Quantity", null, null, 7),
+    ];
+}
+
+function getCouponInfoProperties(){
+    return [
+        createPropertyObject("id", "Id", null, null, 1),
+        createPropertyObject("code", "Code", null, null, 2),
+        createPropertyObject("description", "Description", null, null, 3),
+        createPropertyObject("amount", "Amount", null, null, 4),
+        createPropertyObject("expiry_date", "Expiration Date", null, null, 5),
     ];
 }
 
@@ -51,17 +65,10 @@ export default {
         visible_properties: getCouponsGridColumns(),
         url: "/wp-json/wc/v1/coupons"
       },
-      add: {
-        title: "Add new coupon",
-        url: ""
-      },
-      edit: {
-        title: "Edit coupon",
-        url: ""
-      },
       view: {
         title: "View coupon",
-        url: ""
+        url: "/wp-json/wc/v1/coupons/:id",
+        visible_properties: getCouponInfoProperties(),
       },
       delete: {
         title: "Delete this coupon",

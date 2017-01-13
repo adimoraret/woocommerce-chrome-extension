@@ -29,7 +29,7 @@ class WooInfoModal extends React.Component {
     return (
           <Modal show={isVisible} onHide={this.closeModal}>
               <Modal.Header closeButton>
-                  <Modal.Title>{title} - {itemInfo.name}</Modal.Title>
+                  <Modal.Title>{title}</Modal.Title>
               </Modal.Header>
               <Modal.Body>
                   <WooInfoModalBody resourceId={resourceId} resourceItemInfo={itemInfo}/>
