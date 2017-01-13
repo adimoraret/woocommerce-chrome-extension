@@ -21,7 +21,7 @@ class WooInfoModal extends React.Component {
   }
   
   renderModal(isVisible, resourceId, itemInfo){
-    const selectedResource = config.resources[resourceId - 1];
+    const selectedResource = config.resources.find(x => x.id === resourceId);
     if (!selectedResource) {
       return null;
     }
@@ -51,7 +51,7 @@ function mapStateToProps(state, ownProps) {
     let resourceId = state.modal.resourceId;
     let itemInfo = {};
     if (resourceId > -1){
-      itemInfo = state.reducer_resources[resourceId - 1].view.item;
+      itemInfo = state.reducer_resources.find(x=>x.id === resourceId).view.item;
     } 
     return {
         visible: state.modal.visible,

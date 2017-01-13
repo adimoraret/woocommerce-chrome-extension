@@ -10,7 +10,7 @@ class WooInfoModalBody extends React.Component {
 
   render(){
     const {resourceItemInfo, resourceId} = this.props;
-    const resourceConfig = config.resources[resourceId - 1];
+    const resourceConfig = config.resources.find(x=>x.id === resourceId);
     const properties = resourceConfig.view.visible_properties;
     return(
           <Form horizontal>

@@ -20,14 +20,14 @@ class WooGridRow extends React.Component {
   }
 
   openModal(){
-    const selectedResource = config.resources[this.props.resourceId - 1];
+    const selectedResource = config.resources.find(x => x.id === this.props.resourceId);
     this.props.dispatch(modalAction.openModal(this.props.resourceId));    
     this.props.dispatch(loadWooResourceInfo(selectedResource, this.props.row["id"]));    
   }
 
   render() {
     const {row, resourceId} = this.props;
-    const selectedResource = config.resources[resourceId-1];
+    const selectedResource = config.resources.find(x=>x.id === resourceId);
     const columns = selectedResource.list.visible_properties;
     const shouldShowInfo = !!selectedResource.view.url;
     return(
