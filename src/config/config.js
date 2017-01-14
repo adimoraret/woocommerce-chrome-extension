@@ -15,6 +15,14 @@ function getCouponsGridColumns(){
         createPropertyObject("amount", "Amount", null, null, 4)        
     ];
 }
+function getProductCategoryGridColumns(){
+    return [
+        createPropertyObject("id", "Id", null, null, 1),
+        createPropertyObject("name", "Name", null, null, 2),
+        createPropertyObject("slug", "Slug", null, null, 3),
+        createPropertyObject("parent", "Parent", null, null, 4)        
+    ];
+}
 function getProductInfoProperties(){
     return [
         createPropertyObject("id", "Id", null, null, 1),
@@ -26,7 +34,6 @@ function getProductInfoProperties(){
         createPropertyObject("stock_quantity", "Stock Quantity", null, null, 7),
     ];
 }
-
 function getCouponInfoProperties(){
     return [
         createPropertyObject("id", "Id", null, null, 1),
@@ -36,11 +43,23 @@ function getCouponInfoProperties(){
         createPropertyObject("expiry_date", "Expiration Date", null, null, 5),
     ];
 }
+function getProductCategoryInfoProperties(){
+    return [
+        createPropertyObject("id", "Id", null, null, 1),
+        createPropertyObject("name", "Name", null, null, 2),
+        createPropertyObject("slug", "Slug", null, null, 3),
+        createPropertyObject("description", "Description", null, null, 3),
+        createPropertyObject("parent", "Parent", null, null, 4)  
+    ];
+}
+
+
 
 export default {
     resources : [
       {
         id: 1,
+        order: 1,
         name: "PRODUCT",
         list: {
           title: "Products",
@@ -59,7 +78,8 @@ export default {
     },
     {
       id: 2,
-      name: "COUPON",      
+      name: "COUPON",
+      order: 3,
       list: {
         title: "Coupons",
         visible_properties: getCouponsGridColumns(),
@@ -74,8 +94,27 @@ export default {
         title: "Delete this coupon",
         url: ""
       }
+    },
+    {
+      id: 3,
+      name: "PRODUCT_CATEGORY",
+      order: 2,     
+      list: {
+        title: "Product Categories",
+        visible_properties: getProductCategoryGridColumns(),
+        url: "/wp-json/wc/v1/products/categories"
+      },
+      view: {
+        title: "View coupon",
+        url: "/wp-json/wc/v1/products/categories/:id",
+        visible_properties:getProductCategoryInfoProperties(),
+      },
+      delete: {
+        title: "Delete this coupon",
+        url: ""
+      }      
     }
   ],
-  gridTitleBacgroundColor: ['jarviswidget-color-redLight', 'jarviswidget-color-teal'],
-  gridIcon: ['fa-cube', 'fa-tags']
+  gridTitleBacgroundColor: ['jarviswidget-color-redLight', 'jarviswidget-color-teal', 'jarviswidget-color-blue'],
+  gridIcon: ['fa-cube', 'fa-tags', 'fa-cubes']
 };
