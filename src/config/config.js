@@ -74,6 +74,8 @@ export default {
         title: "Delete this coupon",
         url: ""
       }
-    }  
-  ]
+    }
+  ],
+  gridTitleBacgroundColor: ['jarviswidget-color-redLight', 'jarviswidget-color-teal'],
+  gridIcon: ['fa-cube', 'fa-tags']
 };

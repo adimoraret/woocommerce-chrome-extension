@@ -18,6 +18,14 @@ class WooGrid extends React.Component {
       return <i className="fa fa-refresh" onClick={this.refreshGrid}></i>;    
   }
 
+  getHeaderBackground(resource){
+    return `jarviswidget ${config.gridTitleBacgroundColor[resource.id-1]} jarviswidget-sortable`;
+  }
+
+  getGridIcon(resource){
+    return `fa ${config.gridIcon[resource.id-1]}`;
+  }
+
   refreshGrid(){
     const {resource} = this.props;
     this.props.dispatch(wooActions.showLoader(resource));
@@ -29,7 +37,7 @@ class WooGrid extends React.Component {
     const refreshIcon = this.getRefreshIcon(resource);
     return (
       <article className="col-sm-12 col-md-12 col-lg-6">
-        <div className="jarviswidget jarviswidget-color-greenLight jarviswidget-sortable">
+        <div className={this.getHeaderBackground(resource)}>
           <header role="heading">
               <div className="jarviswidget-ctrls" role="menu">
                 <a href="javascript:void(0)" className="button-icon jarviswidget-toggle-btn">
@@ -37,7 +45,7 @@ class WooGrid extends React.Component {
                 </a>
               </div>          
             <span className="widget-icon">
-              <i className="fa fa-table"></i>
+              <i className={this.getGridIcon(resource)}></i>
             </span>
             <span className="jarviswidget-loader">
               <i className="fa fa-refresh fa-spin"></i>

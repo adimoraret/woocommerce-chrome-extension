@@ -20,7 +20,7 @@ class WooInfoModalBody extends React.Component {
                   {property.displayName}
                 </Col>
                 <Col sm={10}>
-                  <FormControl placeholder={resourceItemInfo[property.fieldName]} disabled />
+                  <FormControl placeholder={resourceItemInfo[property.fieldName]} readOnly />
                 </Col>
               </FormGroup>
             )}

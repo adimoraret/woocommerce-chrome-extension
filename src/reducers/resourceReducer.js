@@ -3,64 +3,34 @@ import initialState from './initialState';
 import config from '../config/config';
 
 export default function resourceReducer(state = initialState.resources, action) {
-  switch (action.type) {
-    case "PRODUCT_LIST_SUCCESS": {
-      let newState =JSON.parse(JSON.stringify(state))
-      newState[0].list.items = action.resource.rows;
-      newState[0].list.visibleLoader = false;
-      return newState;
+    const newState =JSON.parse(JSON.stringify(state))  
+    const found = config.resources.find((resource,index)=>
+    {
+      if (action.type === `${resource.name}_LIST_SUCCESS`) {
+        newState[index].list.items = action.resource.rows;
+        newState[index].list.visibleLoader = false;
+        return true;       
+      }
+      if (action.type === `${resource.name}_LIST_LOAD`) {
+        newState[index].list.visibleLoader = true;
+        newState[index].list.items = [];
+        return true;  
+      }      
+      if (action.type === `${resource.name}_INFO_SUCCESS`) {
+        newState[index].view.item = action.resource.item;
+        newState[index].view.visibleLoader = false;
+        return true;       
+      }
+      if (action.type === `${resource.name}_INFO_LOAD`) {
+        newState[index].view.visibleLoader = true;
+        newState[index].view.item = {};
+        return true;      
+      }
+      return false;
     }
-
-    case "COUPON_LIST_SUCCESS": {
-      let newState = JSON.parse(JSON.stringify(state))
-      newState[1].list.items = action.resource.rows;
-      newState[1].list.visibleLoader = false;
-      return newState;
-    }
-    
-    case "PRODUCT_INFO_SUCCESS": {
-       let newState =JSON.parse(JSON.stringify(state))
-       newState[0].view.item = action.resource.item;
-       newState[0].view.visibleLoader = false;
-       return newState;
-    }
-
-    case "COUPON_INFO_SUCCESS": {
-       let newState =JSON.parse(JSON.stringify(state))
-       newState[1].view.item = action.resource.item;
-       newState[1].view.visibleLoader = false;
-       return newState;
-    }
-
-    case "PRODUCT_LIST_LOAD": {
-      let newState =JSON.parse(JSON.stringify(state))
-      newState[0].list.visibleLoader = true;
-      newState[0].list.items = [];
-      return newState;
-    }
-
-    case "COUPON_LIST_LOAD": {
-      let newState =JSON.parse(JSON.stringify(state))
-      newState[1].list.visibleLoader = true;
-      newState[1].list.items = [];      
-      return newState;
-    }
-
-    case "PRODUCT_INFO_LOAD": {
-      let newState =JSON.parse(JSON.stringify(state))
-      newState[0].view.visibleLoader = true;
-      newState[0].view.item = {};
-      return newState;
-    }
-
-    case "COUPON_INFO_LOAD": {
-      let newState =JSON.parse(JSON.stringify(state))
-      newState[1].view.visibleLoader = true;
-      newState[1].view.item = {};      
-      return newState;
-    }   
-
-    default:
-      return state;
+  );
+  if (found){
+    return newState;
   }
+  return state;
 }
