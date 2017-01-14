@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import * as modalAction from '../../actions/wooModalActions';
 import WooInfoModalBody from './WooInfoModalBody';
 import config from '../../config/config';
+import ItemInfoLoader from '../Common/ItemInfoLoader';
 
 class WooInfoModal extends React.Component {
   constructor(props, context) {
@@ -12,15 +13,15 @@ class WooInfoModal extends React.Component {
     this.closeModal = this.closeModal.bind(this);
   }
   render() {
-    const {resourceId,visible,itemInfo} = this.props;
-    return this.renderModal(visible, resourceId, itemInfo);
+    const {resourceId,visible,itemInfo,visibleLoader} = this.props;
+    return this.renderModal(visible, resourceId, itemInfo, visibleLoader);
   }
-
+  
   closeModal(){
     this.props.dispatch(modalAction.closeModal());
   }
   
-  renderModal(isVisible, resourceId, itemInfo){
+  renderModal(isVisible, resourceId, itemInfo, visibleLoader){
     const selectedResource = config.resources.find(x => x.id === resourceId);
     if (!selectedResource) {
       return null;
@@ -32,7 +33,9 @@ class WooInfoModal extends React.Component {
                   <Modal.Title>{title}</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                  <WooInfoModalBody resourceId={resourceId} resourceItemInfo={itemInfo}/>
+                  <ItemInfoLoader visible={visibleLoader}/>
+                  {(!visibleLoader) && <WooInfoModalBody resourceId={resourceId} resourceItemInfo={itemInfo} /> 
+                  }
               </Modal.Body>
               <Modal.Footer>
                   <Button onClick={this.closeModal} bsStyle="primary">Close</Button>
@@ -48,15 +51,18 @@ WooInfoModal.propTypes = {
 };
 
 function mapStateToProps(state, ownProps) {
+    let visibleLoader = false;
     let resourceId = state.modal.resourceId;
     let itemInfo = {};
     if (resourceId > -1){
       itemInfo = state.reducer_resources.find(x=>x.id === resourceId).view.item;
+      visibleLoader = state.reducer_resources.find(x=>x.id === resourceId).view.visibleLoader;
     } 
     return {
         visible: state.modal.visible,
         resourceId: resourceId,
-        itemInfo: itemInfo
+        itemInfo: itemInfo,
+        visibleLoader: visibleLoader
     };
 }
 

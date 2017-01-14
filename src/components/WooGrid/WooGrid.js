@@ -44,7 +44,7 @@ class WooGrid extends React.Component {
             </span>                       
             <h2>{resource.list.title}</h2>                
           </header>
-          <div role="content">
+          <div role="content" style={{height:'250px'}}>
             <WooGridBody resource={resource} />
           </div>
         </div>

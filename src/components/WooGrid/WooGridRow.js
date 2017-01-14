@@ -2,7 +2,7 @@ import React, {PropTypes} from 'react';
 import * as modalAction from '../../actions/wooModalActions';
 import {connect} from 'react-redux';
 import config from '../../config/config';
-import {loadWooResourceInfo} from '../../actions/wooResourceActions';
+import * as WooActions from '../../actions/wooResourceActions';
 
 class WooGridRow extends React.Component {
   constructor(props, context) {
@@ -22,7 +22,9 @@ class WooGridRow extends React.Component {
   openModal(){
     const selectedResource = config.resources.find(x => x.id === this.props.resourceId);
     this.props.dispatch(modalAction.openModal(this.props.resourceId));    
-    this.props.dispatch(loadWooResourceInfo(selectedResource, this.props.row["id"]));    
+    this.props.dispatch(WooActions.showInfoLoader(selectedResource));
+    this.props.dispatch(WooActions.loadWooResourceInfo(selectedResource, this.props.row["id"]));
+    
   }
 
   render() {

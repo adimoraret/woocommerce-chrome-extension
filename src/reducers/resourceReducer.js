@@ -21,12 +21,14 @@ export default function resourceReducer(state = initialState.resources, action) 
     case "PRODUCT_INFO_SUCCESS": {
        let newState =JSON.parse(JSON.stringify(state))
        newState[0].view.item = action.resource.item;
+       newState[0].view.visibleLoader = false;
        return newState;
     }
 
     case "COUPON_INFO_SUCCESS": {
        let newState =JSON.parse(JSON.stringify(state))
        newState[1].view.item = action.resource.item;
+       newState[1].view.visibleLoader = false;
        return newState;
     }
 
@@ -42,7 +44,21 @@ export default function resourceReducer(state = initialState.resources, action) 
       newState[1].list.visibleLoader = true;
       newState[1].list.items = [];      
       return newState;
-    }    
+    }
+
+    case "PRODUCT_INFO_LOAD": {
+      let newState =JSON.parse(JSON.stringify(state))
+      newState[0].view.visibleLoader = true;
+      newState[0].view.item = {};
+      return newState;
+    }
+
+    case "COUPON_INFO_LOAD": {
+      let newState =JSON.parse(JSON.stringify(state))
+      newState[1].view.visibleLoader = true;
+      newState[1].view.item = {};      
+      return newState;
+    }   
 
     default:
       return state;

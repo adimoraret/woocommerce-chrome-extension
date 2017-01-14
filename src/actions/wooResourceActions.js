@@ -63,3 +63,11 @@ export function showLoader(resource){
       );
   }
 }
+
+export function showInfoLoader(resource){
+  return function(dispatch) {
+      dispatch(
+        {type: `${resource.name}_INFO_LOAD`, resource: {visible:true}}
+      );
+  }
+}
