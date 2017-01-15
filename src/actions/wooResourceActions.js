@@ -22,7 +22,8 @@ export function loadWooResource(resource) {
         })
           .then(function(response) {
             const rsp = {
-              rows: response.data
+              rows: response.data,
+              total: parseInt(response.headers['x-wp-total'])
             };
             dispatch(loadListSuccess(resource, rsp));
           })

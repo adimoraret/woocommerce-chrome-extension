@@ -4,6 +4,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import config from '../../config/config.js';
 import * as wooActions from '../../actions/wooResourceActions';
+import WooGridPagination from './WooGridPagination';
 
 class WooGrid extends React.Component {
   constructor(props, context) {
@@ -19,11 +20,11 @@ class WooGrid extends React.Component {
   }
 
   getHeaderBackground(resource){
-    return `jarviswidget ${config.gridTitleBacgroundColor[resource.id-1]} jarviswidget-sortable`;
+    return `jarviswidget ${config.grid.titleBacgroundColor[resource.id-1]} jarviswidget-sortable`;
   }
 
   getGridIcon(resource){
-    return `fa ${config.gridIcon[resource.id-1]}`;
+    return `fa ${config.grid.icon[resource.id-1]}`;
   }
 
   refreshGrid(){
@@ -35,6 +36,7 @@ class WooGrid extends React.Component {
   render() {
     const {resource} = this.props;
     const refreshIcon = this.getRefreshIcon(resource);
+    const numberOfItems = resource.list.total;
     return (
       <article className="col-sm-12 col-md-12 col-lg-6">
         <div className={this.getHeaderBackground(resource)}>
@@ -54,6 +56,9 @@ class WooGrid extends React.Component {
           </header>
           <div role="content" style={{height:'250px'}}>
             <WooGridBody resource={resource} />
+            <div style={{textAlign:'right'}}>
+              <WooGridPagination numberOfItems={numberOfItems}/>
+            </div>
           </div>
         </div>
       </article>      

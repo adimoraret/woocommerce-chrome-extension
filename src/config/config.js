@@ -115,6 +115,12 @@ export default {
       }      
     }
   ],
-  gridTitleBacgroundColor: ['jarviswidget-color-redLight', 'jarviswidget-color-teal', 'jarviswidget-color-blue'],
-  gridIcon: ['fa-cube', 'fa-tags', 'fa-cubes']
+  grid:{
+    pagination:{
+        itemsPerPage:1,
+        maxButtons:5
+      },
+    titleBacgroundColor: ['jarviswidget-color-redLight', 'jarviswidget-color-teal', 'jarviswidget-color-blue'],
+    icon:['fa-cube', 'fa-tags', 'fa-cubes']
+  }
 };
