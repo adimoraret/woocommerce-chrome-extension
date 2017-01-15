@@ -9,12 +9,14 @@ export default function resourceReducer(state = initialState.resources, action) 
       if (action.type === `${resource.name}_LIST_SUCCESS`) {
         newState[index].list.items = action.resource.rows;
         newState[index].list.total = action.resource.total;
+        newState[index].list.page = action.resource.page;
         newState[index].list.visibleLoader = false;
         return true;       
       }
       if (action.type === `${resource.name}_LIST_LOAD`) {
         newState[index].list.visibleLoader = true;
         newState[index].list.total = 0,
+        newState[index].list.page = 1,
         newState[index].list.items = [];
         return true;  
       }      

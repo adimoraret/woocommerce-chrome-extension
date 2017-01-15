@@ -53,8 +53,6 @@ function getProductCategoryInfoProperties(){
     ];
 }
 
-
-
 export default {
     resources : [
       {
@@ -105,12 +103,12 @@ export default {
         url: "/wp-json/wc/v1/products/categories"
       },
       view: {
-        title: "View coupon",
+        title: "View Product Category",
         url: "/wp-json/wc/v1/products/categories/:id",
         visible_properties:getProductCategoryInfoProperties(),
       },
       delete: {
-        title: "Delete this coupon",
+        title: "Delete this Product Category",
         url: ""
       }      
     }

@@ -1,6 +1,7 @@
 import {getListFullUrl} from '../api/restApi';
 import {getInfoFullUrl} from '../api/restApi';
 import axios from 'axios';
+import config from '../config/config';
 
 function loadListSuccess(resource, response) {
   response.visibleLoader = false;  
@@ -12,10 +13,10 @@ function loadInfoSuccess(resource, response) {
   return { type: `${resource.name}_INFO_SUCCESS`, resource: response};
 }
 
-export function loadWooResource(resource) {
+export function loadWooResource(resource,page) {
   return function(dispatch) {
     return axios({
-          url: getListFullUrl(resource),
+          url: getListFullUrl(resource, page, config.grid.pagination.itemsPerPage),
           timeout: 20000,
           method: 'get',
           responseType: 'json'
@@ -23,7 +24,8 @@ export function loadWooResource(resource) {
           .then(function(response) {
             const rsp = {
               rows: response.data,
-              total: parseInt(response.headers['x-wp-total'])
+              total: parseInt(response.headers['x-wp-total']),
+              page: page
             };
             dispatch(loadListSuccess(resource, rsp));
           })

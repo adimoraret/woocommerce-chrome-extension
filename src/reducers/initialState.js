@@ -13,6 +13,7 @@ function buildResourceItem(item){
   newItem.list.items = [];
   newItem.list.visibleLoader = true;
   newItem.list.total = 0;
+  newItem.list.page = 1;
   newItem.view.item = {};
   newItem.view.visibleLoader = true;  
   return newItem;

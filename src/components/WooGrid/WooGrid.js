@@ -30,13 +30,22 @@ class WooGrid extends React.Component {
   refreshGrid(){
     const {resource} = this.props;
     this.props.dispatch(wooActions.showLoader(resource));
-    this.props.dispatch(wooActions.loadWooResource(resource));
+    this.props.dispatch(wooActions.loadWooResource(resource, resource.list.page));
+  }
+
+  getPagination(resource){
+    if (resource.list.visibleLoader) {
+      return null;
+    }
+    return ( <div style={{textAlign:'right'}}>
+        <WooGridPagination numberOfItems={resource.list.total} resource={resource}/>
+      </div>);
   }
 
   render() {
     const {resource} = this.props;
     const refreshIcon = this.getRefreshIcon(resource);
-    const numberOfItems = resource.list.total;
+    const {total, visibleLoader} = resource.list;
     return (
       <article className="col-sm-12 col-md-12 col-lg-6">
         <div className={this.getHeaderBackground(resource)}>
@@ -56,9 +65,7 @@ class WooGrid extends React.Component {
           </header>
           <div role="content" style={{height:'250px'}}>
             <WooGridBody resource={resource} />
-            <div style={{textAlign:'right'}}>
-              <WooGridPagination numberOfItems={numberOfItems}/>
-            </div>
+            {this.getPagination(resource)}
           </div>
         </div>
       </article>      
