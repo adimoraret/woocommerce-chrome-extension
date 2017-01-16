@@ -5,6 +5,7 @@ import {bindActionCreators} from 'redux';
 import config from '../../config/config.js';
 import * as wooActions from '../../actions/wooResourceActions';
 import WooGridDropDown from './WooGridDropDown';
+import WooSearch from './WooSearch';
 
 class WooGrid extends React.Component {
   constructor(props, context) {
@@ -53,6 +54,9 @@ class WooGrid extends React.Component {
             <div className="widget-toolbar" role="menu">
               <WooGridDropDown title="Filter" id={dropDownId}/>
             </div>
+            <div className="widget-toolbar smart-form">
+              <WooSearch />
+            </div>            
             <span className="jarviswidget-loader">
               <i className="fa fa-refresh fa-spin"></i>
             </span>                       

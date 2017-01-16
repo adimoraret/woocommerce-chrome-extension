@@ -21,13 +21,8 @@ class WooGridDropDown extends React.Component {
 };
 
 WooGridDropDown.propTypes = {
-  title: PropTypes.string.isRequired
+  title: PropTypes.string.isRequired,
+  id: PropTypes.string.isRequired
 };
-
-function mapStateToProps(state, ownProps) {
-    return {
-      title: ownProps.title
-    };
-}
 
 export default WooGridDropDown;
