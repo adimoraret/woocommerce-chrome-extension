@@ -4,12 +4,15 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import config from '../../config/config.js';
 import * as wooActions from '../../actions/wooResourceActions';
-import WooGridPagination from './WooGridPagination';
 
 class WooGrid extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.refreshGrid = this.refreshGrid.bind(this);
+    this.openFilterDropDown = this.openFilterDropDown.bind(this);
+    this.closeFilterDropDown = this.closeFilterDropDown.bind(this);
+    this.toggleFilterDropDown = this.toggleFilterDropDown.bind(this);
+    this.getFilterDropDownClass = this.getFilterDropDownClass.bind(this);
   }
 
   getRefreshIcon(resource){
@@ -33,13 +36,24 @@ class WooGrid extends React.Component {
     this.props.dispatch(wooActions.loadWooResource(resource, resource.list.page));
   }
 
-  getPagination(resource){
-    if (resource.list.visibleLoader) {
-      return null;
+  getFilterDropDownClass(resource){
+    if (resource.list.openFilterDropDown) {
+      return "btn-group open";
     }
-    return ( <div style={{textAlign:'right'}}>
-        <WooGridPagination numberOfItems={resource.list.total} resource={resource}/>
-      </div>);
+    return "btn-group";
+  }
+
+  openFilterDropDown(){
+    this.toggleFilterDropDown(true);
+  }
+
+  closeFilterDropDown(){
+    this.toggleFilterDropDown(false);    
+  }
+
+  toggleFilterDropDown(visible){
+    const {resource} = this.props;    
+    this.props.dispatch((dispatch) => dispatch({type: `${resource.name}_LIST_TOGGLE_FILTER`, resource: {visible:visible}}));
   }
 
   render() {
@@ -58,6 +72,24 @@ class WooGrid extends React.Component {
             <span className="widget-icon">
               <i className={this.getGridIcon(resource)}></i>
             </span>
+            <div className="widget-toolbar" role="menu">
+              <div className={this.getFilterDropDownClass(resource)}>
+                <button className="btn dropdown-toggle btn-xs btn-warning" data-toggle="dropdown" aria-expanded="false" onClick={this.openFilterDropDown} onBlur={this.closeFilterDropDown}>
+                  Filter <i className="fa fa-caret-down"></i>
+                </button>
+                <ul className="dropdown-menu pull-right">
+                  <li>
+                    <a href="javascript:void(0);">Option 1</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);">Option 2</a>
+                  </li>
+                  <li>
+                    <a href="javascript:void(0);">Option 3</a>
+                  </li>
+                </ul>                
+              </div>
+            </div>
             <span className="jarviswidget-loader">
               <i className="fa fa-refresh fa-spin"></i>
             </span>                       
@@ -65,7 +97,6 @@ class WooGrid extends React.Component {
           </header>
           <div role="content" style={{height:'250px'}}>
             <WooGridBody resource={resource} />
-            {this.getPagination(resource)}
           </div>
         </div>
       </article>      

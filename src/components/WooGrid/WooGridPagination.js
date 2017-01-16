@@ -34,6 +34,7 @@ const WooGridPagination = React.createClass({
         last
         ellipsis
         boundaryLinks
+        bsClass='pagination no-margin'
         items={numberOfPages}
         maxButtons={maxButtons}
         activePage={this.state.activePage}
