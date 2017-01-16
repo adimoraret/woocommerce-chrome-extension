@@ -20,10 +20,6 @@ export default function resourceReducer(state = initialState.resources, action) 
         newState[index].list.items = [];
         return true;  
       }
-      if (action.type === `${resource.name}_LIST_TOGGLE_FILTER`){
-        newState[index].list.openFilterDropDown = action.resource.visible;
-        return true;  
-      }
       if (action.type === `${resource.name}_INFO_SUCCESS`) {
         newState[index].view.item = action.resource.item;
         newState[index].view.visibleLoader = false;

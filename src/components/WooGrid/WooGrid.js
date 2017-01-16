@@ -4,15 +4,12 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import config from '../../config/config.js';
 import * as wooActions from '../../actions/wooResourceActions';
+import WooGridDropDown from './WooGridDropDown';
 
 class WooGrid extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.refreshGrid = this.refreshGrid.bind(this);
-    this.openFilterDropDown = this.openFilterDropDown.bind(this);
-    this.closeFilterDropDown = this.closeFilterDropDown.bind(this);
-    this.toggleFilterDropDown = this.toggleFilterDropDown.bind(this);
-    this.getFilterDropDownClass = this.getFilterDropDownClass.bind(this);
   }
 
   getRefreshIcon(resource){
@@ -36,30 +33,11 @@ class WooGrid extends React.Component {
     this.props.dispatch(wooActions.loadWooResource(resource, resource.list.page));
   }
 
-  getFilterDropDownClass(resource){
-    if (resource.list.openFilterDropDown) {
-      return "btn-group open";
-    }
-    return "btn-group";
-  }
-
-  openFilterDropDown(){
-    this.toggleFilterDropDown(true);
-  }
-
-  closeFilterDropDown(){
-    this.toggleFilterDropDown(false);    
-  }
-
-  toggleFilterDropDown(visible){
-    const {resource} = this.props;    
-    this.props.dispatch((dispatch) => dispatch({type: `${resource.name}_LIST_TOGGLE_FILTER`, resource: {visible:visible}}));
-  }
-
   render() {
     const {resource} = this.props;
     const refreshIcon = this.getRefreshIcon(resource);
     const {total, visibleLoader} = resource.list;
+    const dropDownId = `${resource.name}_list_filter`;
     return (
       <article className="col-sm-12 col-md-12 col-lg-6">
         <div className={this.getHeaderBackground(resource)}>
@@ -73,22 +51,7 @@ class WooGrid extends React.Component {
               <i className={this.getGridIcon(resource)}></i>
             </span>
             <div className="widget-toolbar" role="menu">
-              <div className={this.getFilterDropDownClass(resource)}>
-                <button className="btn dropdown-toggle btn-xs btn-warning" data-toggle="dropdown" aria-expanded="false" onClick={this.openFilterDropDown} onBlur={this.closeFilterDropDown}>
-                  Filter <i className="fa fa-caret-down"></i>
-                </button>
-                <ul className="dropdown-menu pull-right">
-                  <li>
-                    <a href="javascript:void(0);">Option 1</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0);">Option 2</a>
-                  </li>
-                  <li>
-                    <a href="javascript:void(0);">Option 3</a>
-                  </li>
-                </ul>                
-              </div>
+              <WooGridDropDown title="Filter" id={dropDownId}/>
             </div>
             <span className="jarviswidget-loader">
               <i className="fa fa-refresh fa-spin"></i>
