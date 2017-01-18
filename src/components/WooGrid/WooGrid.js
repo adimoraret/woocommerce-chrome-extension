@@ -30,7 +30,7 @@ class WooGrid extends React.Component {
 
   refreshGrid(){
     const {resource} = this.props;
-    this.props.dispatch(wooActions.showLoader(resource.name));
+    this.props.dispatch(wooActions.showLoader(resource.id));
     this.props.dispatch(wooActions.loadWooResource(resource.id, resource.list.page));
   }
 
@@ -53,7 +53,7 @@ class WooGrid extends React.Component {
             </span>
             {filter && filter.map(filterItem =>
                 <div className="widget-toolbar" role="menu" key={filterItem.id}>
-                  <WooGridDropDown title={filterItem.name} type={filterItem.fieldName} id={filterItem.id} options={filterItem.options}/>
+                  <WooGridDropDown resourceId={resource.id} title={filterItem.name} type={filterItem.fieldName} filterId={filterItem.id} options={filterItem.options}/>
                 </div>
             )}
             <div className="widget-toolbar smart-form">

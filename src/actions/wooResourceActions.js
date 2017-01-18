@@ -13,11 +13,11 @@ function loadInfoSuccess(resourceName, response) {
   return { type: `${resourceName}_INFO_SUCCESS`, resource: response};
 }
 
-export function loadWooResource(resourceId, page) {
+export function loadWooResource(resourceId, page, filterType, filterValue) {
   const resource = config.resources.find(x => x.id === resourceId);
   return function(dispatch) {
     return axios({
-          url: getListFullUrl(resource.list.url, page, config.grid.pagination.itemsPerPage),
+          url: getListFullUrl(resource.list.url, page, config.grid.pagination.itemsPerPage, filterType, filterValue),
           timeout: 20000,
           method: 'get',
           responseType: 'json'
@@ -61,18 +61,20 @@ export function loadWooResourceInfo(resourceId, itemId) {
   };
 }
 
-export function showLoader(resourceName){
+export function showLoader(resourceId){
+  const resource = config.resources.find(x => x.id === resourceId);
   return function(dispatch) {
       dispatch(
-        {type: `${resourceName}_LIST_LOAD`, resource: {visible:true}}
+        {type: `${resource.name}_LIST_LOAD`, resource: {visible:true}}
       );
   }
 }
 
-export function showInfoLoader(resourceName){
+export function showInfoLoader(resourceId){
+  const resource = config.resources.find(x => x.id === resourceId);
   return function(dispatch) {
       dispatch(
-        {type: `${resourceName}_INFO_LOAD`, resource: {visible:true}}
+        {type: `${resource.name}_INFO_LOAD`, resource: {visible:true}}
       );
   }
 }

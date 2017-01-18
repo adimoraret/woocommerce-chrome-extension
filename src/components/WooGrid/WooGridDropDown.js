@@ -10,26 +10,28 @@ class WooGridDropDown extends React.Component {
     this.changeFilter = this.changeFilter.bind(this);
   }
 
-  changeFilter(filterType, filterValue){
+  changeFilter(resourceId, filterType, filterValue){
     const pageNumber = 1;
-    this.props.dispatch(wooActions.loadWooResource(resource.Id, pageNumber, filterType, filterValue));
+    this.props.dispatch(wooActions.showLoader(resourceId));
+    this.props.dispatch(wooActions.loadWooResource(resourceId, pageNumber, filterType, filterValue));
   }
 
   render(){
-    const {type, title, id, options} = this.props;
+    const {type, title, filterId, options, resourceId} = this.props;
     return (
-      <SplitButton bsSize="xsmall" title={title} pullRight bsStyle="warning" id={id}>
+      <SplitButton bsSize="xsmall" title={title} pullRight bsStyle="warning" id={filterId}>
         {options.map((option) =>
-          <MenuItem key={option.id} eventKey={option.id} onClick={() => this.changeFilter(type, option.fieldName)}>{option.name}</MenuItem>
+          <MenuItem key={option.id} eventKey={option.id} onClick={() => this.changeFilter(resourceId, type, option.fieldName)}>{option.name}</MenuItem>
         )}
     </SplitButton>);
   }
 };
 
 WooGridDropDown.propTypes = {
+  resourceId: PropTypes.number.isRequired,
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
-  id: PropTypes.number.isRequired,
+  filterId: PropTypes.number.isRequired,
   options: PropTypes.array.isRequired
 };
 
