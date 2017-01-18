@@ -62,7 +62,18 @@ export default {
         list: {
           title: "Products",
           visible_properties: getProductsGridColumns(),
-          url: "/wp-json/wc/v1/products"
+          url: "/wp-json/wc/v1/products",
+          filter: [
+            {id: 1, name: 'Status', fieldName: 'status', 
+              options:[
+                {id: 1, name: 'Any', fieldName: 'any' },
+                {id: 2, name: 'Draft', fieldName: 'draft' },
+                {id: 3, name: 'Pending', fieldName:'pending'},
+                {id: 4, name: 'Private', fieldName: 'private'},
+                {id: 5, name: 'Publish', fieldName: 'publish' }
+              ]
+            }
+          ]          
         },
         view: {
           title: "View product",
@@ -115,7 +126,7 @@ export default {
   ],
   grid:{
     pagination:{
-        itemsPerPage:5,
+        itemsPerPage:1,
         maxButtons:5
       },
     titleBacgroundColor: ['jarviswidget-color-redLight', 'jarviswidget-color-teal', 'jarviswidget-color-blue'],

@@ -1,28 +1,41 @@
 import React, {PropTypes} from 'react';
+import {connect} from 'react-redux';
 import {SplitButton, MenuItem} from 'react-bootstrap';
+import * as wooActions from '../../actions/wooResourceActions';
 
 class WooGridDropDown extends React.Component {
 
   constructor(props, context) {
     super(props, context);
+    this.changeFilter = this.changeFilter.bind(this);
+  }
+
+  changeFilter(filterType, filterValue){
+    const pageNumber = 1;
+    this.props.dispatch(wooActions.loadWooResource(resource, pageNumber, filterType, filterValue));
   }
 
   render(){
-    const {title,id} = this.props;
+    const {type, title, id, options} = this.props;
     return (
       <SplitButton bsSize="xsmall" title={title} pullRight bsStyle="warning" id={id}>
-        <MenuItem eventKey="1">Action</MenuItem>
-        <MenuItem eventKey="2">Another action</MenuItem>
-        <MenuItem eventKey="3">Something else here</MenuItem>
-        <MenuItem divider />
-        <MenuItem eventKey="4">Separated link</MenuItem>
+        {options.map((option) =>
+          <MenuItem key={option.id} eventKey={option.id} onClick={() => this.changeFilter(type, option.fieldName)}>{option.name}</MenuItem>
+        )}
     </SplitButton>);
   }
 };
 
 WooGridDropDown.propTypes = {
   title: PropTypes.string.isRequired,
-  id: PropTypes.string.isRequired
+  type: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
+  options: PropTypes.array.isRequired
 };
 
-export default WooGridDropDown;
+function mapStateToProps(state, ownProps) {
+    return {
+    };
+}
+
+export default connect(mapStateToProps)(WooGridDropDown);

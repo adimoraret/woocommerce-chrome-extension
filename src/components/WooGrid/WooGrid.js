@@ -38,7 +38,7 @@ class WooGrid extends React.Component {
     const {resource} = this.props;
     const refreshIcon = this.getRefreshIcon(resource);
     const {total, visibleLoader} = resource.list;
-    const dropDownId = `${resource.name}_list_filter`;
+    const filter = resource.list.filter;
     return (
       <article className="col-sm-12 col-md-12 col-lg-6">
         <div className={this.getHeaderBackground(resource)}>
@@ -51,9 +51,11 @@ class WooGrid extends React.Component {
             <span className="widget-icon">
               <i className={this.getGridIcon(resource)}></i>
             </span>
-            <div className="widget-toolbar" role="menu">
-              <WooGridDropDown title="Filter" id={dropDownId}/>
-            </div>
+            {filter && filter.map(filterItem =>
+                <div className="widget-toolbar" role="menu" key={filterItem.id}>
+                  <WooGridDropDown title={filterItem.name} type={filterItem.fieldName} id={filterItem.id} options={filterItem.options}/>
+                </div>
+            )}
             <div className="widget-toolbar smart-form">
               <WooSearch />
             </div>            

@@ -31,7 +31,10 @@ class WooGridBody extends React.Component {
               <thead>
               <tr>
                 {columns.map(column =>
-                  <th key={column.order}>{column.displayName}</th>
+                  <th key={column.order}>
+                    {column.displayName}
+                    <a href="javascript:void(0);" className="btn-xs"><i className="fa fa-caret-down"></i></a>
+                  </th>
                 )}
                 <th></th>
               </tr>
