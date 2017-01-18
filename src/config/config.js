@@ -126,7 +126,7 @@ export default {
   ],
   grid:{
     pagination:{
-        itemsPerPage:1,
+        itemsPerPage:2,
         maxButtons:5
       },
     titleBacgroundColor: ['jarviswidget-color-redLight', 'jarviswidget-color-teal', 'jarviswidget-color-blue'],

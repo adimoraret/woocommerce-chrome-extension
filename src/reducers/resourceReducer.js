@@ -11,24 +11,26 @@ export default function resourceReducer(state = initialState.resources, action) 
         newState[index].list.total = action.resource.total;
         newState[index].list.page = action.resource.page;
         newState[index].list.visibleLoader = false;
-        return true;       
+        newState[index].list.filterType = action.resource.filterType;
+        newState[index].list.filterValue = action.resource.filterValue;
+        return true;
       }
       if (action.type === `${resource.name}_LIST_LOAD`) {
         newState[index].list.visibleLoader = true;
         newState[index].list.total = 0,
         newState[index].list.page = 1,
         newState[index].list.items = [];
-        return true;  
+        return true;
       }
       if (action.type === `${resource.name}_INFO_SUCCESS`) {
         newState[index].view.item = action.resource.item;
         newState[index].view.visibleLoader = false;
-        return true;       
+        return true;
       }
       if (action.type === `${resource.name}_INFO_LOAD`) {
         newState[index].view.visibleLoader = true;
         newState[index].view.item = {};
-        return true;      
+        return true;
       }
       return false;
     }

@@ -16,12 +16,18 @@ class WooGridDropDown extends React.Component {
     this.props.dispatch(wooActions.loadWooResource(resourceId, pageNumber, filterType, filterValue));
   }
 
+
+
   render(){
-    const {type, title, filterId, options, resourceId} = this.props;
+    const {type, title, filterId, options, resourceId, selectedFilterValue} = this.props;
     return (
-      <SplitButton bsSize="xsmall" title={title} pullRight bsStyle="warning" id={filterId}>
+      <SplitButton bsSize="xsmall" title={<span><i className="fa fa-filter"></i>{title}</span>} pullRight bsStyle="warning" id={filterId}>
         {options.map((option) =>
-          <MenuItem key={option.id} eventKey={option.id} onClick={() => this.changeFilter(resourceId, type, option.fieldName)}>{option.name}</MenuItem>
+          <MenuItem key={option.id} eventKey={option.id} onClick={() => this.changeFilter(resourceId, type, option.fieldName)}>
+            {(selectedFilterValue === option.fieldName) && <i className="fa fa-check "></i>}
+            {(selectedFilterValue != option.fieldName) && <i className="fa fa-check disabled"></i>}
+            {option.name}
+          </MenuItem>
         )}
     </SplitButton>);
   }

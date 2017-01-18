@@ -26,7 +26,9 @@ export function loadWooResource(resourceId, page, filterType, filterValue) {
             const rsp = {
               rows: response.data,
               total: parseInt(response.headers['x-wp-total']),
-              page: page
+              page: page,
+              filterType: filterType,
+              filterValue: filterValue
             };
             dispatch(loadListSuccess(resource.name, rsp));
           })

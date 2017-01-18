@@ -15,7 +15,7 @@ class WooGridBody extends React.Component {
     }
     return ( 
       <div className="text-right">
-        <WooGridPagination numberOfItems={resource.list.total} resource={resource}/>
+        <WooGridPagination numberOfItems={resource.list.total} resource={resource} selectedFilterType={resource.list.filterType} selectedFilterValue={resource.list.filterValue}/>
       </div>);
   }
 
