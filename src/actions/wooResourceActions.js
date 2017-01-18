@@ -3,20 +3,21 @@ import {getInfoFullUrl} from '../api/restApi';
 import axios from 'axios';
 import config from '../config/config';
 
-function loadListSuccess(resource, response) {
+function loadListSuccess(resourceName, response) {
   response.visibleLoader = false;  
-  return { type: `${resource.name}_LIST_SUCCESS`, resource: response};
+  return { type: `${resourceName}_LIST_SUCCESS`, resource: response};
 }
 
-function loadInfoSuccess(resource, response) {
+function loadInfoSuccess(resourceName, response) {
   response.visibleLoader = false;  
-  return { type: `${resource.name}_INFO_SUCCESS`, resource: response};
+  return { type: `${resourceName}_INFO_SUCCESS`, resource: response};
 }
 
-export function loadWooResource(resource,page) {
+export function loadWooResource(resourceId, page) {
+  const resource = config.resources.find(x => x.id === resourceId);
   return function(dispatch) {
     return axios({
-          url: getListFullUrl(resource, page, config.grid.pagination.itemsPerPage),
+          url: getListFullUrl(resource.list.url, page, config.grid.pagination.itemsPerPage),
           timeout: 20000,
           method: 'get',
           responseType: 'json'
@@ -27,7 +28,7 @@ export function loadWooResource(resource,page) {
               total: parseInt(response.headers['x-wp-total']),
               page: page
             };
-            dispatch(loadListSuccess(resource, rsp));
+            dispatch(loadListSuccess(resource.name, rsp));
           })
           .catch(function(response){
             console.log("Error: " + response);
@@ -37,10 +38,11 @@ export function loadWooResource(resource,page) {
   };
 }
 
-export function loadWooResourceInfo(resource, id) {
+export function loadWooResourceInfo(resourceId, itemId) {
+  const resource = config.resources.find(x => x.id === resourceId);  
   return function(dispatch) {
     return axios({
-          url: getInfoFullUrl(resource, id),
+          url: getInfoFullUrl(resource.view.url, itemId),
           timeout: 20000,
           method: 'get',
           responseType: 'json'
@@ -49,7 +51,7 @@ export function loadWooResourceInfo(resource, id) {
             const rsp = {
               item: response.data
             };
-            dispatch(loadInfoSuccess(resource, rsp));
+            dispatch(loadInfoSuccess(resource.name, rsp));
           })
           .catch(function(response){
             console.log("Error: " + response);
@@ -59,18 +61,18 @@ export function loadWooResourceInfo(resource, id) {
   };
 }
 
-export function showLoader(resource){
+export function showLoader(resourceName){
   return function(dispatch) {
       dispatch(
-        {type: `${resource.name}_LIST_LOAD`, resource: {visible:true}}
+        {type: `${resourceName}_LIST_LOAD`, resource: {visible:true}}
       );
   }
 }
 
-export function showInfoLoader(resource){
+export function showInfoLoader(resourceName){
   return function(dispatch) {
       dispatch(
-        {type: `${resource.name}_INFO_LOAD`, resource: {visible:true}}
+        {type: `${resourceName}_INFO_LOAD`, resource: {visible:true}}
       );
   }
 }

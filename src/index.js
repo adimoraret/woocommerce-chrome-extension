@@ -12,7 +12,7 @@ import config from './config/config';
 
 const store = configureStore();
 config.resources.map(resource =>
-  store.dispatch(loadWooResource(resource, 1))
+  store.dispatch(loadWooResource(resource.id, 1))
 );
 
 render(

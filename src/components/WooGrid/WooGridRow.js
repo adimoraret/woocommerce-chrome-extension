@@ -22,8 +22,8 @@ class WooGridRow extends React.Component {
   openModal(){
     const selectedResource = config.resources.find(x => x.id === this.props.resourceId);
     this.props.dispatch(modalAction.openModal(this.props.resourceId));    
-    this.props.dispatch(WooActions.showInfoLoader(selectedResource));
-    this.props.dispatch(WooActions.loadWooResourceInfo(selectedResource, this.props.row["id"]));
+    this.props.dispatch(WooActions.showInfoLoader(selectedResource.name));
+    this.props.dispatch(WooActions.loadWooResourceInfo(selectedResource.id, this.props.row["id"]));
     
   }
 

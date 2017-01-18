@@ -12,7 +12,7 @@ class WooGridDropDown extends React.Component {
 
   changeFilter(filterType, filterValue){
     const pageNumber = 1;
-    this.props.dispatch(wooActions.loadWooResource(resource, pageNumber, filterType, filterValue));
+    this.props.dispatch(wooActions.loadWooResource(resource.Id, pageNumber, filterType, filterValue));
   }
 
   render(){

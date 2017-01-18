@@ -30,8 +30,8 @@ class WooGrid extends React.Component {
 
   refreshGrid(){
     const {resource} = this.props;
-    this.props.dispatch(wooActions.showLoader(resource));
-    this.props.dispatch(wooActions.loadWooResource(resource, resource.list.page));
+    this.props.dispatch(wooActions.showLoader(resource.name));
+    this.props.dispatch(wooActions.loadWooResource(resource.id, resource.list.page));
   }
 
   render() {

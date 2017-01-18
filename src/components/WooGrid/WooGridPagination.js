@@ -15,8 +15,8 @@ const WooGridPagination = React.createClass({
 
   handleSelect(eventKey) {
     const {resource} = this.props;
-    this.props.dispatch(wooActions.showLoader(resource));
-    this.props.dispatch(wooActions.loadWooResource(resource, eventKey));
+    this.props.dispatch(wooActions.showLoader(resource.name));
+    this.props.dispatch(wooActions.loadWooResource(resource.id, eventKey));
     this.setState({
       activePage: eventKey
     });
