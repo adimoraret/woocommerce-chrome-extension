@@ -2,6 +2,7 @@ import React, {PropTypes} from 'react';
 import WooGridRow from './WooGridRow';
 import Loader from '../Common/Loader';
 import WooGridPagination from './WooGridPagination';
+import WooGridTableHeader from './WooGridTableHeader';
 
 class WooGridBody extends React.Component {
   constructor(props, context) {
@@ -9,9 +10,6 @@ class WooGridBody extends React.Component {
   }
 
   getPagination(resource){
-    if (resource.list.visibleLoader) {
-      return null;
-    }
     return ( 
       <div className="text-right">
         <WooGridPagination 
@@ -20,6 +18,11 @@ class WooGridBody extends React.Component {
           currentPage={resource.list.page}
           appliedFilter={resource.list.appliedFilter}/>
       </div>);
+  }
+
+  sortByColumn(fieldName){
+    const {resource} = this.props;
+    console.log("Resource ", resource.name, " Sorting by ", fieldName);
   }
 
   render() {
@@ -31,17 +34,7 @@ class WooGridBody extends React.Component {
         <div className="widget-body no-padding">
           <div className="table-responsive">
             <table className="table table-hover table-striped">
-              <thead>
-              <tr>
-                {columns.map(column =>
-                  <th key={column.order}>
-                    {column.displayName}
-                    <a href="javascript:void(0);" className="btn-xs"><i className="fa fa-caret-down"></i></a>
-                  </th>
-                )}
-                <th></th>
-              </tr>
-              </thead>
+              <WooGridTableHeader resource={resource} />
               <tbody>
                   {visibleLoader && <Loader numberOfColumns={columns.length+1}/>}
                   {rows.map(row =>
@@ -51,7 +44,7 @@ class WooGridBody extends React.Component {
               <tfoot>
                 <tr>
                   <td colSpan={columns.length+1}>
-                    {this.getPagination(resource)}
+                    {!visibleLoader && this.getPagination(resource)}
                   </td>
                 </tr>
               </tfoot>

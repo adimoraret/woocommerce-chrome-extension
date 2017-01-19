@@ -13,11 +13,11 @@ function loadInfoSuccess(resourceName, response) {
   return { type: `${resourceName}_INFO_SUCCESS`, resource: response};
 }
 
-export function loadWooResource(resourceId, page, appliedFilter={filterType:null, appliedFilter:null}) {
+export function loadWooResource(resourceId, page, appliedFilter={filterType:null, appliedFilter:null}, appliedSort={sortBy:null, direction:0}) {
   const resource = config.resources.find(x => x.id === resourceId);
   return function(dispatch) {
     return axios({
-          url: getListFullUrl(resource.list.url, page, config.grid.pagination.itemsPerPage, appliedFilter.filterType, appliedFilter.filterValue),
+          url: getListFullUrl(resource.list.url, page, config.grid.pagination.itemsPerPage, appliedFilter.filterType, appliedFilter.filterValue, appliedSort.sortBy, appliedSort.direction),
           timeout: 20000,
           method: 'get',
           responseType: 'json'
@@ -28,6 +28,7 @@ export function loadWooResource(resourceId, page, appliedFilter={filterType:null
               total: parseInt(response.headers['x-wp-total']),
               page: page,
               appliedFilter: {filterType: appliedFilter.filterType, filterValue: appliedFilter.filterValue},
+              appliedSort: {sortBy: appliedSort.sortBy, direction: appliedSort.direction}
             };
             dispatch(loadListSuccess(resource.name, rsp));
           })
