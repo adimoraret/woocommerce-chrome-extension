@@ -6,20 +6,16 @@ class Loader extends React.Component{
         super(props, context);
     }
     render() {
-        const {visible, numberOfColumns} = this.props;
-        if (visible) {
-            return(
-                <tr style={{textAlign:"center"}}>
-                    <td colSpan={numberOfColumns}><img src={Preloader} /> </td>
-                </tr>
-            );
-        }
-        return null;
+        const {numberOfColumns} = this.props;
+        return(
+            <tr style={{textAlign:"center"}}>
+                <td colSpan={numberOfColumns}><img src={Preloader} /> </td>
+            </tr>
+        );
     }
 }
 
 Loader.propTypes = {
-  visible: PropTypes.bool.isRequired,
   numberOfColumns: PropTypes.number.isRequired
 };
 

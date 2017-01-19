@@ -31,13 +31,13 @@ class WooGrid extends React.Component {
   refreshGrid(){
     const {resource} = this.props;
     this.props.dispatch(wooActions.showLoader(resource.id));
-    this.props.dispatch(wooActions.loadWooResource(resource.id, resource.list.page));
+    this.props.dispatch(wooActions.loadWooResource(resource.id, resource.list.page, resource.list.appliedFilter));
   }
 
   render() {
     const {resource} = this.props;
     const refreshIcon = this.getRefreshIcon(resource);
-    const {total, visibleLoader, filterValue} = resource.list;
+    const {total, visibleLoader, appliedFilter} = resource.list;
     const filter = resource.list.filter;
     return (
       <article className="col-sm-12 col-md-12 col-lg-6">
@@ -59,7 +59,7 @@ class WooGrid extends React.Component {
                     type={filterItem.fieldName} 
                     filterId={filterItem.id} 
                     options={filterItem.options}
-                    selectedFilterValue={filterValue}  
+                    appliedFilter={appliedFilter}  
                     />
                 </div>
             )}

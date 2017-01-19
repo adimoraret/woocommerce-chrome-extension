@@ -73,7 +73,7 @@ export default {
                 {id: 5, name: 'Publish', fieldName: 'publish' }
               ]
             }
-          ]          
+          ]
         },
         view: {
           title: "View product",

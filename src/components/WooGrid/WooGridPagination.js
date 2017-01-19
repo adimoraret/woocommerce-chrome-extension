@@ -14,9 +14,9 @@ const WooGridPagination = React.createClass({
   },
 
   handleSelect(eventKey) {
-    const {resourceId, selectedFilterType, selectedFilterValue} = this.props;
+    const {resourceId, appliedFilter} = this.props;
     this.props.dispatch(wooActions.showLoader(resourceId));
-    this.props.dispatch(wooActions.loadWooResource(resourceId, eventKey, selectedFilterType, selectedFilterValue));
+    this.props.dispatch(wooActions.loadWooResource(resourceId, eventKey, appliedFilter));
     this.setState({
       activePage: eventKey
     });
@@ -51,11 +51,6 @@ WooGridPagination.propTypes = {
 
 function mapStateToProps(state, ownProps) {
     return {
-      numberOfItems: ownProps.numberOfItems,
-      resourceId: ownProps.resourceId,
-      currentPage: ownProps.currentPage,
-      selectedFilterType: ownProps.selectedFilterType,
-      selectedFilterValue: ownProps.selectedFilterValue
     };
 }
 

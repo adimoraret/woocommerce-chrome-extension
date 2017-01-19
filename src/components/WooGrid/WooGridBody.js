@@ -1,7 +1,6 @@
 import React, {PropTypes} from 'react';
 import WooGridRow from './WooGridRow';
 import Loader from '../Common/Loader';
-import {connect} from 'react-redux';
 import WooGridPagination from './WooGridPagination';
 
 class WooGridBody extends React.Component {
@@ -19,8 +18,7 @@ class WooGridBody extends React.Component {
           numberOfItems={resource.list.total} 
           resourceId={resource.id}
           currentPage={resource.list.page}
-          selectedFilterType={resource.list.filterType} 
-          selectedFilterValue={resource.list.filterValue}/>
+          appliedFilter={resource.list.appliedFilter}/>
       </div>);
   }
 
@@ -45,7 +43,7 @@ class WooGridBody extends React.Component {
               </tr>
               </thead>
               <tbody>
-                  <Loader visible={visibleLoader} numberOfColumns={columns.length+1}/>
+                  {visibleLoader && <Loader numberOfColumns={columns.length+1}/>}
                   {rows.map(row =>
                     <WooGridRow key={row.id} resourceId={resource.id} row={row}/>
                   )}
@@ -68,10 +66,4 @@ WooGridBody.propTypes = {
   resource: PropTypes.object.isRequired
 };
 
-function mapStateToProps(state, ownProps) {
- return {
-    resources: state.resources
-  };
-}
-
-export default connect(mapStateToProps)(WooGridBody);
+export default WooGridBody;

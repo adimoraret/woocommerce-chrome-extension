@@ -12,20 +12,19 @@ class WooGridDropDown extends React.Component {
 
   changeFilter(resourceId, filterType, filterValue){
     const pageNumber = 1;
+    const appliedFilter = {filterType: filterType, filterValue: filterValue}
     this.props.dispatch(wooActions.showLoader(resourceId));
-    this.props.dispatch(wooActions.loadWooResource(resourceId, pageNumber, filterType, filterValue));
+    this.props.dispatch(wooActions.loadWooResource(resourceId, pageNumber, appliedFilter));
   }
 
-
-
   render(){
-    const {type, title, filterId, options, resourceId, selectedFilterValue} = this.props;
+    const {type, title, filterId, options, resourceId, appliedFilter} = this.props;
     return (
       <SplitButton bsSize="xsmall" title={<span><i className="fa fa-filter"></i>{title}</span>} pullRight bsStyle="warning" id={filterId}>
         {options.map((option) =>
           <MenuItem key={option.id} eventKey={option.id} onClick={() => this.changeFilter(resourceId, type, option.fieldName)}>
-            {(selectedFilterValue === option.fieldName) && <i className="fa fa-check "></i>}
-            {(selectedFilterValue != option.fieldName) && <i className="fa fa-check disabled"></i>}
+            {(appliedFilter.filterValue === option.fieldName) && <i className="fa fa-check "></i>}
+            {(appliedFilter.filterValue != option.fieldName) && <i className="fa fa-check disabled"></i>}
             {option.name}
           </MenuItem>
         )}
@@ -38,7 +37,8 @@ WooGridDropDown.propTypes = {
   title: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   filterId: PropTypes.number.isRequired,
-  options: PropTypes.array.isRequired
+  options: PropTypes.array.isRequired,
+  appliedFilter: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {

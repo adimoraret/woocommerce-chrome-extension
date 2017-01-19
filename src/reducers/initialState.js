@@ -14,6 +14,7 @@ function buildResourceItem(item){
   newItem.list.visibleLoader = true;
   newItem.list.total = 0;
   newItem.list.page = 1;
+  newItem.list.appliedFilter = {filterType: null, filterValue: null, searchText: null}
   newItem.view.item = {};
   newItem.view.visibleLoader = true;  
   return newItem;

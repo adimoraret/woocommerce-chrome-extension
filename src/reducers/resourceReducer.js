@@ -11,8 +11,7 @@ export default function resourceReducer(state = initialState.resources, action) 
         newState[index].list.total = action.resource.total;
         newState[index].list.page = action.resource.page;
         newState[index].list.visibleLoader = false;
-        newState[index].list.filterType = action.resource.filterType;
-        newState[index].list.filterValue = action.resource.filterValue;
+        newState[index].list.appliedFilter = action.resource.appliedFilter;
         return true;
       }
       if (action.type === `${resource.name}_LIST_LOAD`) {
