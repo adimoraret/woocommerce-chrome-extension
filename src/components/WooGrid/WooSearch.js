@@ -12,6 +12,6 @@ class WooSearch extends React.Component {
       </FormGroup>
     );
   }
-};
+}
 
 export default WooSearch;

@@ -6,12 +6,12 @@ import colors from 'colors';
 function buildHtml(sourceHtmlFile, destHtmlFile) {
     
     function changeBundleLocation($){
-        var scriptNode = $('script')[0];
+        let scriptNode = $('script')[0];
         scriptNode.attribs["src"] = "/scripts/bundle.js";
     }
 
     function addStylesheetNode($){
-        var styleNode = $('<link rel="stylesheet" href="/scripts/styles.css"/>');
+        let styleNode = $('<link rel="stylesheet" href="/scripts/styles.css"/>');
          $('head').append(styleNode);
     }
     

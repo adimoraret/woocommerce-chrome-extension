@@ -22,7 +22,6 @@ class WooGridBody extends React.Component {
 
   sortByColumn(fieldName){
     const {resource} = this.props;
-    console.log("Resource ", resource.name, " Sorting by ", fieldName);
   }
 
   render() {

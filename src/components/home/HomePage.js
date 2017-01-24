@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {PropTypes} from 'react';
 import BriefInformation from '../BriefInformation/BriefInformation';
 import WooInfoModal from '../WooModal/WooInfoModal';
 import WooGrid from '../WooGrid/WooGrid';
@@ -27,6 +27,11 @@ class HomePage extends React.Component {
     );
   }
 }
+
+HomePage.propTypes = {
+  resources: PropTypes.array.isRequired,
+};
+
 
 function mapStateToProps(state, ownProps) {
   return {

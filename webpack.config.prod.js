@@ -6,7 +6,9 @@ const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('production')
 };
 
+/* eslint-disable no-console */
 console.log("Inside webpack.config.prod.js");
+/* eslint-enable no-console */
 
 export default {
   debug: true,

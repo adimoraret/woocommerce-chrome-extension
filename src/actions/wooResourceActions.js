@@ -1,5 +1,4 @@
-import {getListFullUrl} from '../api/restApi';
-import {getInfoFullUrl} from '../api/restApi';
+import {getListFullUrl,getInfoFullUrl} from '../api/restApi';
 import axios from 'axios';
 import config from '../config/config';
 
@@ -33,9 +32,11 @@ export function loadWooResource(resourceId, page, appliedFilter={filterType:null
             dispatch(loadListSuccess(resource.name, rsp));
           })
           .catch(function(response){
+            /* eslint-disable no-console */
             console.log("Error: " + response);
-            dispatch(receiveError(resourceType, response.data));
-            dispatch(pushState(null,'/error'));
+            /* eslint-enable no-console */
+            //dispatch(receiveError(resourceType, response.data));
+            //dispatch(pushState(null,'/error'));
           });
   };
 }
@@ -56,9 +57,11 @@ export function loadWooResourceInfo(resourceId, itemId) {
             dispatch(loadInfoSuccess(resource.name, rsp));
           })
           .catch(function(response){
+            /* eslint-disable no-console */
             console.log("Error: " + response);
-            dispatch(receiveError(resourceType, response.data));
-            dispatch(pushState(null,'/error'));
+            /* eslint-enable no-console */
+            //dispatch(receiveError(resourceType, response.data));
+            //dispatch(pushState(null,'/error'));
           });
   };
 }
@@ -69,7 +72,7 @@ export function showLoader(resourceId){
       dispatch(
         {type: `${resource.name}_LIST_LOAD`, resource: {visible:true}}
       );
-  }
+  };
 }
 
 export function showInfoLoader(resourceId){
@@ -78,5 +81,5 @@ export function showInfoLoader(resourceId){
       dispatch(
         {type: `${resource.name}_INFO_LOAD`, resource: {visible:true}}
       );
-  }
+  };
 }

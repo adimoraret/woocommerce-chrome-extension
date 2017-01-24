@@ -7,11 +7,11 @@ export default function modalReducer(state = initialState.modal, action) {
       return Object.assign({}, state, {
         visible: true,
         resourceId: action.resourceId
-      })
+      });
     case types.MODAL_ACTION.CLOSE:
       return Object.assign({}, state, {
         visible: false
-      })    
+      });   
     default:
       return state;
   }

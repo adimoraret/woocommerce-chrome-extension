@@ -12,13 +12,9 @@ class WooInfoModal extends React.Component {
     super(props, context);
     this.closeModal = this.closeModal.bind(this);
   }
-  render() {
-    const {resourceId,visible,itemInfo,visibleLoader} = this.props;
-    return this.renderModal(visible, resourceId, itemInfo, visibleLoader);
-  }
   
   closeModal(){
-    this.props.dispatch(modalAction.closeModal());
+    this.props.actions.closeModal();
   }
   
   renderModal(isVisible, resourceId, itemInfo, visibleLoader){
@@ -43,11 +39,20 @@ class WooInfoModal extends React.Component {
           </Modal>
     );
   }
+
+  render() {
+    const {resourceId,visible,itemInfo,visibleLoader} = this.props;
+    return this.renderModal(visible, resourceId, itemInfo, visibleLoader);
+  }
+
 }
 
 WooInfoModal.propTypes = {
   visible: PropTypes.bool.isRequired,
-  resourceId: PropTypes.number.isRequired
+  resourceId: PropTypes.number.isRequired,
+  itemInfo: PropTypes.object.isRequired,
+  visibleLoader: PropTypes.bool.isRequired,
+  actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
@@ -66,4 +71,8 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps)(WooInfoModal);
+function mapDispatchToProps(dispatch){
+  return {actions: bindActionCreators(modalAction, dispatch)};
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WooInfoModal);

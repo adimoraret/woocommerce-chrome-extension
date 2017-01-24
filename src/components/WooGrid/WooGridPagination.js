@@ -4,23 +4,25 @@ import {Pagination} from 'react-bootstrap';
 import config from '../../config/config.js';
 import {getNumberOfPages} from '../Common/PageCalculation';
 import * as wooActions from '../../actions/wooResourceActions';
+import {bindActionCreators} from 'redux';
 
-const WooGridPagination = React.createClass({
-  getInitialState() {
-    const {currentPage} = this.props;
-    return {
-      activePage: currentPage
+class WooGridPagination extends React.Component {
+  constructor(props, context) {
+    super(props, context);
+    this.handleSelect = this.handleSelect.bind(this);
+    this.state = {
+      activePage: props.currentPage
     };
-  },
+  }
 
   handleSelect(eventKey) {
     const {resourceId, appliedFilter} = this.props;
-    this.props.dispatch(wooActions.showLoader(resourceId));
-    this.props.dispatch(wooActions.loadWooResource(resourceId, eventKey, appliedFilter));
+    this.props.actions.showLoader(resourceId);
+    this.props.actions.loadWooResource(resourceId, eventKey, appliedFilter);
     this.setState({
       activePage: eventKey
     });
-  },
+  }
 
   render() {
     const {numberOfItems} = this.props;
@@ -34,19 +36,21 @@ const WooGridPagination = React.createClass({
         last
         ellipsis
         boundaryLinks
-        bsClass='pagination no-margin'
+        bsClass="pagination no-margin"
         items={numberOfPages}
         maxButtons={maxButtons}
         activePage={this.state.activePage}
         onSelect={this.handleSelect} />
     );
   }
-});
+}
 
 WooGridPagination.propTypes = {
   numberOfItems: PropTypes.number.isRequired,
   resourceId: PropTypes.number.isRequired,
-  currentPage: PropTypes.number.isRequired
+  currentPage: PropTypes.number.isRequired,
+  appliedFilter: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
@@ -54,4 +58,10 @@ function mapStateToProps(state, ownProps) {
     };
 }
 
-export default connect(mapStateToProps)(WooGridPagination);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(wooActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WooGridPagination);

@@ -5,13 +5,15 @@ const GLOBALS = {
   'process.env.NODE_ENV': JSON.stringify('DEV')
 };
 
+/* eslint-disable no-console */
 console.log("Inside webpack.config.dev.js");
+/* eslint-enable no-console */
 
 export default {
   debug: true,
   devtool: 'cheap-module-eval-source-map',
   noInfo: false,
-  entry: [
+  entry: [ // order is important
     'eventsource-polyfill', // necessary for hot reloading with IE
     'webpack-hot-middleware/client?reload=true', //note that it reloads the page if hot module reloading fails.
     './src/index'

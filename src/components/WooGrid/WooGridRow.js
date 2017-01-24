@@ -1,8 +1,9 @@
 import React, {PropTypes} from 'react';
-import * as modalAction from '../../actions/wooModalActions';
 import {connect} from 'react-redux';
 import config from '../../config/config';
-import * as WooActions from '../../actions/wooResourceActions';
+import {bindActionCreators} from 'redux';
+import * as wooActions from '../../actions/wooResourceActions';
+import * as modalAction from '../../actions/wooModalActions';
 
 class WooGridRow extends React.Component {
   constructor(props, context) {
@@ -21,9 +22,9 @@ class WooGridRow extends React.Component {
 
   openModal(){
     const selectedResource = config.resources.find(x => x.id === this.props.resourceId);
-    this.props.dispatch(modalAction.openModal(this.props.resourceId));    
-    this.props.dispatch(WooActions.showInfoLoader(selectedResource.id));
-    this.props.dispatch(WooActions.loadWooResourceInfo(selectedResource.id, this.props.row["id"]));
+    this.props.actions.openModal(this.props.resourceId);    
+    this.props.actions.showInfoLoader(selectedResource.id);
+    this.props.actions.loadWooResourceInfo(selectedResource.id, this.props.row["id"]);
   }
 
   render() {
@@ -42,11 +43,11 @@ class WooGridRow extends React.Component {
             <div className="btn-group pull-right margin-10">
                {shouldShowInfo && 
                 <button className="btn btn-info btn-xs" onClick={this.openModal}>
-                  <i className="fa-fw fa fa-info"></i>
+                  <i className="fa-fw fa fa-info" />
                 </button>
                 }
               <button className="btn btn-danger btn-xs ">
-                <i className="fa fa-times"></i>
+                <i className="fa fa-times" />
               </button>      
             </div>
           </td>
@@ -58,13 +59,21 @@ class WooGridRow extends React.Component {
 
 WooGridRow.propTypes = {
   resourceId: PropTypes.number.isRequired,
-  row: PropTypes.object.isRequired 
+  row: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
 };
 
-//this.props will have the dispatch available
 function mapStateToProps(state, ownProps) {
  return {
  };
 }
 
-export default connect(mapStateToProps)(WooGridRow);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(Object.assign({}, wooActions, modalAction), dispatch)
+  };
+}
+
+
+
+export default connect(mapStateToProps, mapDispatchToProps)(WooGridRow);

@@ -15,9 +15,9 @@ class WooGrid extends React.Component {
 
   getRefreshIcon(resource){
     if (resource.list.visibleLoader) {
-      return <i className="fa fa-refresh fa-spin"></i>;
+      return <i className="fa fa-refresh fa-spin" />;
     }
-      return <i className="fa fa-refresh" onClick={this.refreshGrid}></i>;    
+      return <i className="fa fa-refresh" onClick={this.refreshGrid} />;    
   }
 
   getHeaderBackground(resource){
@@ -30,8 +30,8 @@ class WooGrid extends React.Component {
 
   refreshGrid(){
     const {resource} = this.props;
-    this.props.dispatch(wooActions.showLoader(resource.id));
-    this.props.dispatch(wooActions.loadWooResource(resource.id, resource.list.page, resource.list.appliedFilter));
+    this.props.actions.showLoader(resource.id);
+    this.props.actions.loadWooResource(resource.id, resource.list.page, resource.list.appliedFilter);
   }
 
   render() {
@@ -49,7 +49,7 @@ class WooGrid extends React.Component {
                 </a>
               </div>          
             <span className="widget-icon">
-              <i className={this.getGridIcon(resource)}></i>
+              <i className={this.getGridIcon(resource)} />
             </span>
             {filter && filter.map(filterItem =>
                 <div className="widget-toolbar" role="menu" key={filterItem.id}>
@@ -67,7 +67,7 @@ class WooGrid extends React.Component {
               <WooSearch />
             </div>            
             <span className="jarviswidget-loader">
-              <i className="fa fa-refresh fa-spin"></i>
+              <i className="fa fa-refresh fa-spin" />
             </span>                       
             <h2>{resource.list.title}</h2>                
           </header>
@@ -80,9 +80,20 @@ class WooGrid extends React.Component {
   }
 }
 
+WooGrid.propTypes = {
+  resource: PropTypes.object.isRequired,
+  actions: PropTypes.object.isRequired
+};
+
 function mapStateToProps(state, ownProps) {
  return {
  };
 }
 
-export default connect(mapStateToProps)(WooGrid);
+function mapDispatchToProps(dispatch) {
+  return {
+    actions: bindActionCreators(wooActions, dispatch)
+  };
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(WooGrid);

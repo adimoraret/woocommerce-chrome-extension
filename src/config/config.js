@@ -6,7 +6,7 @@ function getProductsGridColumns(){
         createPropertyObject("name", "Name", "permalink", "description", 2),
         createPropertyObject("price", "Price", null, null, 3)        
     ];
-};
+}
 function getCouponsGridColumns(){
     return [
         createPropertyObject("id", "Id", null, null, 1),

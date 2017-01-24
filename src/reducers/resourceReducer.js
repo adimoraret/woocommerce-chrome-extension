@@ -3,7 +3,7 @@ import initialState from './initialState';
 import config from '../config/config';
 
 export default function resourceReducer(state = initialState.resources, action) {
-    const newState =JSON.parse(JSON.stringify(state))  
+    const newState =JSON.parse(JSON.stringify(state));
     const found = config.resources.find((resource,index)=>
     {
       if (action.type === `${resource.name}_LIST_SUCCESS`) {

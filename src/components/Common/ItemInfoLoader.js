@@ -6,7 +6,7 @@ class ItemInfoLoader extends React.Component{
         super(props, context);
     }
     render() {
-        const {visible, numberOfColumns} = this.props;
+        const {visible} = this.props;
         if (visible) {
             return(
                 <div style={{textAlign:'center'}}>
