@@ -35,7 +35,7 @@ class WooGrid extends React.Component {
     this.props.actions.loadWooResource(resource.id, resource.list.page, resource.list.appliedFilter)
       .catch(error => {
         this.props.actions.hideLoader(resource.id);
-        toastr.error(error)
+        toastr.error(error);
       });
   }
 

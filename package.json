@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "WooCommerce Chrome Extension",
   "scripts": {
-    "test": "mocha --reporter progress tools/testSetup.js \"tests/**/*.test.js\"",
+    "test": "mocha --reporter progress tools/testSetup.js \"test/**/*.test.js\"",
     "test:watch": "npm run test -- --watch",
     "lint": "node_modules/.bin/esw webpack.config.* src tools",
     "lint:watch": "npm run lint -- --watch",

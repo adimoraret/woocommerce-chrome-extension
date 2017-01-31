@@ -53,7 +53,7 @@ export function loadWooResourceInfo(resourceId, itemId) {
             dispatch(loadInfoSuccess(resource.name, rsp));
           })
           .catch(function(error){
-            throw(error)
+            throw(error);
           });
   };
 }
