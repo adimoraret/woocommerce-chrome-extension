@@ -31,12 +31,8 @@ export function loadWooResource(resourceId, page, appliedFilter={filterType:null
             };
             dispatch(loadListSuccess(resource.name, rsp));
           })
-          .catch(function(response){
-            /* eslint-disable no-console */
-            console.log("Error: " + response);
-            /* eslint-enable no-console */
-            //dispatch(receiveError(resourceType, response.data));
-            //dispatch(pushState(null,'/error'));
+          .catch(function(error){
+            throw(error);
           });
   };
 }
@@ -56,13 +52,18 @@ export function loadWooResourceInfo(resourceId, itemId) {
             };
             dispatch(loadInfoSuccess(resource.name, rsp));
           })
-          .catch(function(response){
-            /* eslint-disable no-console */
-            console.log("Error: " + response);
-            /* eslint-enable no-console */
-            //dispatch(receiveError(resourceType, response.data));
-            //dispatch(pushState(null,'/error'));
+          .catch(function(error){
+            throw(error)
           });
+  };
+}
+
+export function hideLoader(resourceId){
+  const resource = config.resources.find(x => x.id === resourceId);
+  return function(dispatch) {
+      dispatch(
+        {type: `${resource.name}_LIST_LOAD`, resource: {visible:false}}
+      );
   };
 }
 

@@ -16,7 +16,7 @@ export default function resourceReducer(state = initialState.resources, action) 
         return true;
       }
       if (action.type === `${resource.name}_LIST_LOAD`) {
-        newState[index].list.visibleLoader = true;
+        newState[index].list.visibleLoader = action.resource.visible;
         newState[index].list.total = 0,
         newState[index].list.page = 1,
         newState[index].list.items = [];

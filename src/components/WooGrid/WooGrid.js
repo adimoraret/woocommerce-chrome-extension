@@ -6,6 +6,7 @@ import config from '../../config/config.js';
 import * as wooActions from '../../actions/wooResourceActions';
 import WooGridDropDown from './WooGridDropDown';
 import WooSearch from './WooSearch';
+import toastr from 'toastr';
 
 class WooGrid extends React.Component {
   constructor(props, context) {
@@ -31,7 +32,11 @@ class WooGrid extends React.Component {
   refreshGrid(){
     const {resource} = this.props;
     this.props.actions.showLoader(resource.id);
-    this.props.actions.loadWooResource(resource.id, resource.list.page, resource.list.appliedFilter);
+    this.props.actions.loadWooResource(resource.id, resource.list.page, resource.list.appliedFilter)
+      .catch(error => {
+        this.props.actions.hideLoader(resource.id);
+        toastr.error(error)
+      });
   }
 
   render() {
