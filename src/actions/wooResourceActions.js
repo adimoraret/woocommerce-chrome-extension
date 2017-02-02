@@ -2,18 +2,9 @@ import {getListFullUrl,getInfoFullUrl} from '../api/restApi';
 import axios from 'axios';
 import config from '../config/config';
 
-function loadListSuccess(resourceName, response) {
-  response.visibleLoader = false;  
-  return { type: `${resourceName}_LIST_SUCCESS`, resource: response};
-}
-
-function loadInfoSuccess(resourceName, response) {
-  response.visibleLoader = false;  
-  return { type: `${resourceName}_INFO_SUCCESS`, resource: response};
-}
-
 export function loadWooResource(resourceId, page, appliedFilter={filterType:null, appliedFilter:null}, appliedSort={sortBy:null, direction:0}) {
   const resource = config.resources.find(x => x.id === resourceId);
+  validateResource(resource);
   return function(dispatch) {
     return axios({
           url: getListFullUrl(resource.list.url, page, config.grid.pagination.itemsPerPage, appliedFilter.filterType, appliedFilter.filterValue, appliedSort.sortBy, appliedSort.direction),
@@ -83,4 +74,20 @@ export function showInfoLoader(resourceId){
         {type: `${resource.name}_INFO_LOAD`, resource: {visible:true}}
       );
   };
+}
+
+function loadListSuccess(resourceName, response) {
+  response.visibleLoader = false;  
+  return { type: `${resourceName}_LIST_SUCCESS`, resource: response};
+}
+
+function loadInfoSuccess(resourceName, response) {
+  response.visibleLoader = false;  
+  return { type: `${resourceName}_INFO_SUCCESS`, resource: response};
+}
+
+function validateResource(resource){
+  if (!resource) {
+    throw new Error("Invalid resource");
+  }
 }
