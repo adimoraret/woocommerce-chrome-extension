@@ -66,7 +66,5 @@ describe('Woo Resource Actions', () => {
         });
       });
 
-
-
     });
 });
