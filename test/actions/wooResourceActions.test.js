@@ -16,7 +16,7 @@ describe('Woo Resource Actions', () => {
 
     describe("Load Woo Resource", () => {
  
-      it('should throw Invalid resource for invalid resource', (done) => {
+      it('should throw exception for invalid resource', (done) => {
         expect(()=>sut.loadWooResource(-100,1)).toThrow("Invalid resource");
         done();
       });
@@ -34,8 +34,8 @@ describe('Woo Resource Actions', () => {
           const actual = errorThrown.getCall(0).args[0].message;
           expect("Request failed with status code 404").toEqual(actual);
           expect(false).toEqual(dispatch.called);
+          done();          
         });
-        done();
       });
   
       it('should dispatch Load List Success when loading Woo Resource item List', (done) => {
@@ -57,11 +57,58 @@ describe('Woo Resource Actions', () => {
         sut.loadWooResource(1,1)(dispatch);
         
         moxios.wait(function(){
-          var actual = dispatch.getCall(0).args[0];
+          const actual = dispatch.getCall(0).args[0];
           expect(expected.actionType).toEqual(actual.type);
           expect(expected.resource.page).toEqual(actual.resource.page);
           expect(expected.resource.total).toEqual(actual.resource.total);
           expect(expected.resource.rows).toEqual(actual.resource.rows);          
+          done();
+        });
+      });
+
+    });
+
+    describe("Load Woo Resource Info", () => {
+
+      it('should throw exception for invalid resource', (done) => {
+        expect(()=>sut.loadWooResourceInfo(-100,1)).toThrow("Invalid resource");
+        done();
+      });
+      
+      it('should throw 404 error message if the Load Resource Item endpoint is not found', (done) => {
+       moxios.stubRequest(mother.PRODUCT_ITEM_URL, {
+            status: 404
+          });
+        const errorThrown = sinon.spy();
+        const dispatch = sinon.spy();
+        sut.loadWooResourceInfo(1,1)(dispatch)
+          .catch(errorThrown);
+
+        moxios.wait(function(){
+          const actual = errorThrown.getCall(0).args[0].message;
+          expect("Request failed with status code 404").toEqual(actual);
+          expect(false).toEqual(dispatch.called);
+          done();          
+        });
+      });
+
+      it('should dispatch Load Item Success when loading Woo Resource item', (done) => {
+        moxios.stubRequest(mother.PRODUCT_ITEM_URL, {
+          status: 200,
+          response: {}
+        });
+        const expected ={
+          actionType : "PRODUCT_INFO_SUCCESS",
+          resource: {item: {}}
+        };
+        const dispatch = sinon.spy();
+        
+        sut.loadWooResourceInfo(1,1)(dispatch);
+        
+        moxios.wait(function(){
+          const actual = dispatch.getCall(0).args[0];
+          expect(expected.actionType).toEqual(actual.type);
+          expect(expected.resource.item).toEqual(actual.resource.item);
           done();
         });
       });

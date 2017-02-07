@@ -30,6 +30,7 @@ export function loadWooResource(resourceId, page, appliedFilter={filterType:null
 
 export function loadWooResourceInfo(resourceId, itemId) {
   const resource = config.resources.find(x => x.id === resourceId);  
+  validateResource(resource);
   return function(dispatch) {
     return axios({
           url: getInfoFullUrl(resource.view.url, itemId),
