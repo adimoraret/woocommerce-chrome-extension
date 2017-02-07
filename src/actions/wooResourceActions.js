@@ -54,7 +54,7 @@ export function hideLoader(resourceId){
   const resource = config.resources.find(x => x.id === resourceId);
   return function(dispatch) {
       dispatch(
-        {type: `${resource.name}_LIST_LOAD`, resource: {visible:false}}
+        {type: `${resource.name}_LIST_CLEAR`, resource: {visible:false}}
       );
   };
 }
@@ -63,7 +63,7 @@ export function showLoader(resourceId){
   const resource = config.resources.find(x => x.id === resourceId);
   return function(dispatch) {
       dispatch(
-        {type: `${resource.name}_LIST_LOAD`, resource: {visible:true}}
+        {type: `${resource.name}_LIST_CLEAR`, resource: {visible:true}}
       );
   };
 }
@@ -72,7 +72,7 @@ export function showInfoLoader(resourceId){
   const resource = config.resources.find(x => x.id === resourceId);
   return function(dispatch) {
       dispatch(
-        {type: `${resource.name}_INFO_LOAD`, resource: {visible:true}}
+        {type: `${resource.name}_INFO_CLEAR`, resource: {visible:true}}
       );
   };
 }
