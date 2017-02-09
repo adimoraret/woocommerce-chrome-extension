@@ -8,11 +8,11 @@ describe('Woo Resource Actions', () => {
 
     beforeEach(function () {
       moxios.install()
-    })
+    });
 
     afterEach(function () {
       moxios.uninstall()
-    })
+    });
 
     describe("Load Woo Resource", () => {
  
@@ -32,7 +32,7 @@ describe('Woo Resource Actions', () => {
 
         moxios.wait(function(){
           const actual = errorThrown.getCall(0).args[0].message;
-          expect("Request failed with status code 404").toEqual(actual);
+          expect(actual).toEqual("Request failed with status code 404");
           expect(false).toEqual(dispatch.called);
           done();          
         });
@@ -58,10 +58,10 @@ describe('Woo Resource Actions', () => {
         
         moxios.wait(function(){
           const actual = dispatch.getCall(0).args[0];
-          expect(expected.actionType).toEqual(actual.type);
-          expect(expected.resource.page).toEqual(actual.resource.page);
-          expect(expected.resource.total).toEqual(actual.resource.total);
-          expect(expected.resource.rows).toEqual(actual.resource.rows);          
+          expect(actual.type).toEqual(expected.actionType);
+          expect(actual.resource.page).toEqual(expected.resource.page);
+          expect(actual.resource.total).toEqual(expected.resource.total);
+          expect(actual.resource.rows).toEqual(expected.resource.rows);          
           done();
         });
       });
@@ -86,7 +86,7 @@ describe('Woo Resource Actions', () => {
 
         moxios.wait(function(){
           const actual = errorThrown.getCall(0).args[0].message;
-          expect("Request failed with status code 404").toEqual(actual);
+          expect(actual).toEqual("Request failed with status code 404");
           expect(false).toEqual(dispatch.called);
           done();          
         });
@@ -107,8 +107,8 @@ describe('Woo Resource Actions', () => {
         
         moxios.wait(function(){
           const actual = dispatch.getCall(0).args[0];
-          expect(expected.actionType).toEqual(actual.type);
-          expect(expected.resource.item).toEqual(actual.resource.item);
+          expect(actual.type).toEqual(expected.actionType);
+          expect(actual.resource.item).toEqual(expected.resource.item);
           done();
         });
       });

@@ -1,4 +1,4 @@
-import {getListFullUrl,getInfoFullUrl} from '../api/restApi';
+import {getListFullUrl,getInfoFullUrl} from '../api/restApiUrlHandler';
 import axios from 'axios';
 import config from '../config/config';
 

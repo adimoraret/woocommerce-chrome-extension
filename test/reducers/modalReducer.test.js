@@ -9,9 +9,9 @@ describe('Modal Reducer', () => {
       resourceId: -1
     };
     const action = modalAction.openModal(123);
-    const newState = modalReducer(initialState, action);
-    expect(newState.visible).toEqual(true);
-    expect(newState.resourceId).toEqual(123);
+    const actual = modalReducer(initialState, action);
+    expect(actual.visible).toEqual(true);
+    expect(actual.resourceId).toEqual(123);
   });
 
   it('should Close Modal when passed CLOSE_MODAL', () => {
@@ -20,9 +20,9 @@ describe('Modal Reducer', () => {
       resourceId: 982
     };
     const action = modalAction.closeModal();
-    const newState = modalReducer(initialState, action);
-    expect(newState.visible).toEqual(false);
-    expect(newState.resourceId).toEqual(-1);
+    const actual = modalReducer(initialState, action);
+    expect(actual.visible).toEqual(false);
+    expect(actual.resourceId).toEqual(-1);
   });
 
   it ('should return default state when passing invalid action', () => {
@@ -30,7 +30,7 @@ describe('Modal Reducer', () => {
       someInfo: "test"
     };
     const action = {type: "DUMMY_ACTTION"};
-    const newState = modalReducer(initialState, action);
-    expect(newState).toEqual(initialState);
+    const actual = modalReducer(initialState, action);
+    expect(actual).toEqual(initialState);
   });
 });

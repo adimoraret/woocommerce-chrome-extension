@@ -9,8 +9,8 @@ describe('Modal Actions', () => {
           type: types.MODAL_ACTION.OPEN, 
           resourceId:1
         };
-        const action = sut.openModal(1);
-        expect(action).toEqual(expectedAction);        
+        const actual = sut.openModal(1);
+        expect(actual).toEqual(expectedAction);        
       });
     });
     describe("Close Modal", () => {
@@ -18,8 +18,8 @@ describe('Modal Actions', () => {
         const expectedAction = {
           type: types.MODAL_ACTION.CLOSE 
         };
-        const action = sut.closeModal();
-        expect(action).toEqual(expectedAction);        
+        const actual = sut.closeModal();
+        expect(actual).toEqual(expectedAction);        
       });
     });    
 });

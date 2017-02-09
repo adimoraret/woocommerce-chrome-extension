@@ -7,11 +7,11 @@ describe('Resource Reducer', () => {
   
   it('should return empty resource list properties when passed PRODUCT_LIST_CLEAR', () => {
     const action = {type: "PRODUCT_LIST_CLEAR", resource: {visible: true}};
-    const newState = resourceReducer(mother.RESOURCE_INITIAL_STATE, action);
-    expect(newState[0].list.visibleLoader).toEqual(true);
-    expect(newState[0].list.total).toEqual(0);
-    expect(newState[0].list.page).toEqual(1);
-    expect(newState[0].list.items).toEqual([]);
+    const actual = resourceReducer(mother.RESOURCE_INITIAL_STATE, action);
+    expect(actual[0].list.visibleLoader).toEqual(true);
+    expect(actual[0].list.total).toEqual(0);
+    expect(actual[0].list.page).toEqual(1);
+    expect(actual[0].list.items).toEqual([]);
   });
 
   it('should return list of resources when passed PRODUCT_LIST_SUCCESS', () => {
@@ -22,20 +22,20 @@ describe('Resource Reducer', () => {
       appliedFilter: {appliedFilter: "aaa"},
       appliedSort: {appliedSort: "bbb"}
     }};
-    const newState = resourceReducer(mother.RESOURCE_INITIAL_STATE, action);
-    expect(newState[0].list.visibleLoader).toEqual(false);
-    expect(newState[0].list.items).toEqual(action.resource.rows);    
-    expect(newState[0].list.total).toEqual(action.resource.total);
-    expect(newState[0].list.page).toEqual(action.resource.page);
-    expect(newState[0].list.appliedFilter).toEqual(action.resource.appliedFilter);
-    expect(newState[0].list.appliedSort).toEqual(action.resource.appliedSort);    
+    const actual = resourceReducer(mother.RESOURCE_INITIAL_STATE, action);
+    expect(actual[0].list.visibleLoader).toEqual(false);
+    expect(actual[0].list.items).toEqual(action.resource.rows);    
+    expect(actual[0].list.total).toEqual(action.resource.total);
+    expect(actual[0].list.page).toEqual(action.resource.page);
+    expect(actual[0].list.appliedFilter).toEqual(action.resource.appliedFilter);
+    expect(actual[0].list.appliedSort).toEqual(action.resource.appliedSort);    
   });
 
   it('should return empty resource info when passed PRODUCT_INFO_CLEAR', () => {
     const action = {type: "PRODUCT_INFO_CLEAR", resource: null};
-    const newState = resourceReducer(mother.RESOURCE_INITIAL_STATE, action);
-    expect(newState[0].view.visibleLoader).toEqual(true);
-    expect(newState[0].view.item).toEqual({});
+    const actual = resourceReducer(mother.RESOURCE_INITIAL_STATE, action);
+    expect(actual[0].view.visibleLoader).toEqual(true);
+    expect(actual[0].view.item).toEqual({});
   });
 
   it('should return resource item when passed PRODUCT_INFO_SUCCESS', () => {
