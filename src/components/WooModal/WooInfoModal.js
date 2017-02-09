@@ -10,11 +10,11 @@ import ItemInfoLoader from '../Common/ItemInfoLoader';
 class WooInfoModal extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.closeModal = this.closeModal.bind(this);
+    this.closeViewModal = this.closeViewModal.bind(this);
   }
   
-  closeModal(){
-    this.props.actions.closeModal();
+  closeViewModal(){
+    this.props.actions.closeViewModal();
   }
   
   renderModal(isVisible, resourceId, itemInfo, visibleLoader){
@@ -24,7 +24,7 @@ class WooInfoModal extends React.Component {
     }
     const title = selectedResource.view.title;
     return (
-          <Modal show={isVisible} onHide={this.closeModal}>
+          <Modal show={isVisible} onHide={this.closeViewModal}>
               <Modal.Header closeButton>
                   <Modal.Title>{title}</Modal.Title>
               </Modal.Header>
@@ -34,7 +34,7 @@ class WooInfoModal extends React.Component {
                   }
               </Modal.Body>
               <Modal.Footer>
-                  <Button onClick={this.closeModal} bsStyle="primary">Close</Button>
+                  <Button onClick={this.closeViewModal} bsStyle="primary">Close</Button>
               </Modal.Footer>
           </Modal>
     );

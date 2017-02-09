@@ -8,7 +8,7 @@ import * as modalAction from '../../actions/wooModalActions';
 class WooGridRow extends React.Component {
   constructor(props, context) {
     super(props, context);
-    this.openModal = this.openModal.bind(this);
+    this.openViewModal = this.openViewModal.bind(this);
   }
 
   createCellContent(column, row) {
@@ -20,9 +20,9 @@ class WooGridRow extends React.Component {
     );
   }
 
-  openModal(){
+  openViewModal(){
     const selectedResource = config.resources.find(x => x.id === this.props.resourceId);
-    this.props.actions.openModal(this.props.resourceId);    
+    this.props.actions.openViewModal(this.props.resourceId);    
     this.props.actions.showInfoLoader(selectedResource.id);
     this.props.actions.loadWooResourceInfo(selectedResource.id, this.props.row["id"]);
   }
@@ -32,6 +32,7 @@ class WooGridRow extends React.Component {
     const selectedResource = config.resources.find(x=>x.id === resourceId);
     const columns = selectedResource.list.visible_properties;
     const shouldShowInfo = !!selectedResource.view.url;
+    const shouldShowEdit = !!selectedResource.edit.url;
     return(
         <tr>
             {columns.map(column =>
@@ -41,8 +42,13 @@ class WooGridRow extends React.Component {
             )}
           <td>
             <div className="btn-group pull-right margin-10">
+               {shouldShowEdit && 
+                <button className="btn btn-warning btn-xs" onClick={this.openViewModal}>
+                  <i className="fa-fw fa fa-pencil" />
+                </button>
+                }              
                {shouldShowInfo && 
-                <button className="btn btn-info btn-xs" onClick={this.openModal}>
+                <button className="btn btn-info btn-xs" onClick={this.openViewModal}>
                   <i className="fa-fw fa fa-info" />
                 </button>
                 }

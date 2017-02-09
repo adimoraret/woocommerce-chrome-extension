@@ -25,6 +25,10 @@ export function createEmptyResourceView(){
   };
 }
 
+export function createEmptyResourceEdit(){
+  return {};
+}
+
 export function createEmptyResourceItem(item){
   let newItem = Object.assign({}, item);
   newItem.list = Object.assign({}, newItem.list, createEmptyResourceList());

@@ -52,6 +52,9 @@ function getProductCategoryInfoProperties(){
         createPropertyObject("parent", "Parent", null, null, 4)  
     ];
 }
+function getProductEditProperties(){
+  return getProductInfoProperties();
+}
 
 export default {
     resources : [
@@ -80,6 +83,11 @@ export default {
           url: "/wp-json/wc/v1/products/:id",
           visible_properties: getProductInfoProperties(),
         },
+        edit: {
+          title: "Edit product",
+          url: "/wp-json/wc/v1/products/:id",
+          visible_properties: getProductEditProperties(),
+        },
         delete: {
           title: "Delete this product",
           url: ""
@@ -99,6 +107,9 @@ export default {
         url: "/wp-json/wc/v1/coupons/:id",
         visible_properties: getCouponInfoProperties(),
       },
+      edit: {
+        title: "Edit Coupon"
+      },      
       delete: {
         title: "Delete this coupon",
         url: ""
@@ -118,6 +129,9 @@ export default {
         url: "/wp-json/wc/v1/products/categories/:id",
         visible_properties:getProductCategoryInfoProperties(),
       },
+      edit: {
+        title: "Edit Product Category"
+      },      
       delete: {
         title: "Delete this Product Category",
         url: ""
