@@ -1,7 +1,7 @@
 import * as types from '../actions/actionTypes';
 import initialState from './initialState';
 
-export default function modalReducer(state = initialState.modal, action) {
+export default function viewModalReducer(state = initialState.modal.view, action) {
   switch (action.type) {
     case types.VIEW_MODAL_ACTION.OPEN:
       return Object.assign({}, state, { 

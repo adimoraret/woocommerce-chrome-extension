@@ -1,5 +1,5 @@
 import expect from 'expect';
-import modalReducer from '../../src/reducers/modalReducer';
+import viewModalReducer from '../../src/reducers/viewModalReducer';
 import * as modalAction  from '../../src/actions/wooModalActions';
 
 describe('Modal Reducer', () => {
@@ -9,7 +9,7 @@ describe('Modal Reducer', () => {
       resourceId: -1
     };
     const action = modalAction.openViewModal(123);
-    const actual = modalReducer(initialState, action);
+    const actual = viewModalReducer(initialState, action);
     expect(actual.visible).toEqual(true);
     expect(actual.resourceId).toEqual(123);
   });
@@ -20,7 +20,7 @@ describe('Modal Reducer', () => {
       resourceId: 982
     };
     const action = modalAction.closeViewModal();
-    const actual = modalReducer(initialState, action);
+    const actual = viewModalReducer(initialState, action);
     expect(actual.visible).toEqual(false);
     expect(actual.resourceId).toEqual(-1);
   });
@@ -30,7 +30,7 @@ describe('Modal Reducer', () => {
       someInfo: "test"
     };
     const action = {type: "DUMMY_ACTTION"};
-    const actual = modalReducer(initialState, action);
+    const actual = viewModalReducer(initialState, action);
     expect(actual).toEqual(initialState);
   });
 });

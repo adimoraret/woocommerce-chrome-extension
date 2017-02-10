@@ -57,14 +57,14 @@ WooInfoModal.propTypes = {
 
 function mapStateToProps(state, ownProps) {
     let visibleLoader = false;
-    let resourceId = state.modal.resourceId;
+    let resourceId = state.modal.view.resourceId;
     let itemInfo = {};
     if (resourceId > -1){
       itemInfo = state.reducer_resources.find(x=>x.id === resourceId).view.item;
       visibleLoader = state.reducer_resources.find(x=>x.id === resourceId).view.visibleLoader;
     } 
     return {
-        visible: state.modal.visible,
+        visible: state.modal.view.visible,
         resourceId: resourceId,
         itemInfo: itemInfo,
         visibleLoader: visibleLoader
