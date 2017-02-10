@@ -1,26 +1,26 @@
 import expect from 'expect';
-import viewModalReducer from '../../src/reducers/viewModalReducer';
+import editModalReducer from '../../src/reducers/editModalReducer';
 import * as modalAction  from '../../src/actions/wooModalActions';
 
-describe('Modal Reducer', () => {
-  it('should Open View Modal when passed OPEN_VIEW_MODAL', () => {
+describe('Edit Modal Reducer', () => {
+  it('should Open Edit Modal when passed OPEN_EDIT_MODAL', () => {
     const initialState = {
       visible: false,
       resourceId: -1
     };
-    const action = modalAction.openViewModal(123);
-    const actual = viewModalReducer(initialState, action);
+    const action = modalAction.openEditModal(123);
+    const actual = editModalReducer(initialState, action);
     expect(actual.visible).toEqual(true);
     expect(actual.resourceId).toEqual(123);
   });
 
-  it('should Close Modal when passed CLOSE_VIEW_MODAL', () => {
+  it('should close Edit Modal when passed CLOSE_EDIT_MODAL', () => {
     const initialState = {
       visible: true,
       resourceId: 982
     };
-    const action = modalAction.closeViewModal();
-    const actual = viewModalReducer(initialState, action);
+    const action = modalAction.closeEditModal();
+    const actual = editModalReducer(initialState, action);
     expect(actual.visible).toEqual(false);
     expect(actual.resourceId).toEqual(-1);
   });
@@ -30,7 +30,7 @@ describe('Modal Reducer', () => {
       someInfo: "test"
     };
     const action = {type: "DUMMY_ACTTION"};
-    const actual = viewModalReducer(initialState, action);
+    const actual = editModalReducer(initialState, action);
     expect(actual).toEqual(initialState);
   });
 });

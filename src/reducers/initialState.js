@@ -3,7 +3,11 @@ import * as resourceHelper from '../config/resourceHelper';
 export default {
   resources: resourceHelper.createEmptyResources(),
   modal: {
-    view: { 
+    view: {
+      visible: false,
+      resourceId: -1
+    },
+    edit: {
       visible: false,
       resourceId: -1
     }

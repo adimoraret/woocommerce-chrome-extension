@@ -2,3 +2,8 @@ export const VIEW_MODAL_ACTION = {
     OPEN: "OPEN_VIEW_MODAL",
     CLOSE: "CLOSE_VIEW_MODAL"
 };
+
+export const EDIT_MODAL_ACTION = {
+    OPEN: "OPEN_EDIT_MODAL",
+    CLOSE: "CLOSE_EDIT_MODAL"
+};

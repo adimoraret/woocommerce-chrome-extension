@@ -1,6 +1,7 @@
 import React, {PropTypes} from 'react';
 import BriefInformation from '../BriefInformation/BriefInformation';
 import WooInfoModal from '../WooModal/WooInfoModal';
+import WooEditModal from '../WooModal/WooEditModal';
 import WooGrid from '../WooGrid/WooGrid';
 import {connect} from 'react-redux';
 import * as wooResourceActions from '../../actions/wooResourceActions';
@@ -21,6 +22,7 @@ class HomePage extends React.Component {
                     <WooGrid key={resource.id} resource={resource}/>
                   )}
                 <WooInfoModal />
+                <WooEditModal />
               </div>
             </section>
         </div>

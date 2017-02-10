@@ -9,6 +9,7 @@ class WooGridRow extends React.Component {
   constructor(props, context) {
     super(props, context);
     this.openViewModal = this.openViewModal.bind(this);
+    this.openEditModal = this.openEditModal.bind(this);
   }
 
   createCellContent(column, row) {
@@ -27,6 +28,11 @@ class WooGridRow extends React.Component {
     this.props.actions.loadWooResourceInfo(selectedResource.id, this.props.row["id"]);
   }
 
+  openEditModal(){
+    const selectedResource = config.resources.find(x => x.id === this.props.resourceId);
+    this.props.actions.openEditModal(selectedResource.id);   
+  }
+
   render() {
     const {row, resourceId} = this.props;
     const selectedResource = config.resources.find(x=>x.id === resourceId);
@@ -43,7 +49,7 @@ class WooGridRow extends React.Component {
           <td>
             <div className="btn-group pull-right margin-10">
                {shouldShowEdit && 
-                <button className="btn btn-warning btn-xs" onClick={this.openViewModal}>
+                <button className="btn btn-warning btn-xs" onClick={this.openEditModal}>
                   <i className="fa-fw fa fa-pencil" />
                 </button>
                 }              
