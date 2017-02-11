@@ -19,7 +19,8 @@
     "build-js": "babel-node tools/build.js",
     "prebuild": "npm run clean-dist",
     "build": "npm run build-js",
-    "postbuild": "npm-run-all --parallel deploy-images deploy-manifest deploy-html"
+    "postbuild": "npm-run-all --parallel deploy-images deploy-manifest deploy-html",
+    "teamcity-test": "mocha --reporter mocha-teamcity-reporter tools/testSetup.js \"test/**/*.test.js\""
   },
   "repository": {
     "type": "git",
@@ -64,6 +65,7 @@
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "mocha": "^3.2.0",
+    "mocha-teamcity-reporter": "^1.1.1",
     "moxios": "^0.3.0",
     "nock": "^9.0.2",
     "npm-run-all": "^3.1.1",
