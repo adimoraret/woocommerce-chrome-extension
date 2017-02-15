@@ -6,21 +6,12 @@ class ItemInfoLoader extends React.Component{
         super(props, context);
     }
     render() {
-        const {visible} = this.props;
-        if (visible) {
-            return(
-                <div style={{textAlign:'center'}}>
-                    <img src={Preloader} />
-                </div>
-            );
-        }
-        return null;
+      return(
+          <div style={{textAlign:'center'}}>
+              <img src={Preloader} />
+          </div>
+      );
     }
 }
-
-ItemInfoLoader.propTypes = {
-  visible: PropTypes.bool.isRequired,
-};
-
 
 export default ItemInfoLoader;

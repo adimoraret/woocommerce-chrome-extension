@@ -87,6 +87,7 @@ export default {
           title: "Edit product",
           url: "/wp-json/wc/v1/products/:id",
           visible_properties: getProductEditProperties(),
+          images_property: 'images'
         },
         delete: {
           title: "Delete this product",

@@ -6,6 +6,7 @@ import * as modalAction from '../../actions/wooModalActions';
 import WooInfoModalBody from './WooInfoModalBody';
 import config from '../../config/config';
 import ItemInfoLoader from '../Common/ItemInfoLoader';
+import {isEmptyObject} from '../Common/Helper';
 
 class WooInfoModal extends React.Component {
   constructor(props, context) {
@@ -17,7 +18,8 @@ class WooInfoModal extends React.Component {
     this.props.actions.closeViewModal();
   }
   
-  renderModal(isVisible, resourceId, itemInfo, visibleLoader){
+  render() {
+    const {isVisible, resourceId, item} = this.props;
     const selectedResource = config.resources.find(x => x.id === resourceId);
     if (!selectedResource) {
       return null;
@@ -29,45 +31,29 @@ class WooInfoModal extends React.Component {
                   <Modal.Title>{title}</Modal.Title>
               </Modal.Header>
               <Modal.Body>
-                  <ItemInfoLoader visible={visibleLoader}/>
-                  {(!visibleLoader) && <WooInfoModalBody resourceId={resourceId} resourceItemInfo={itemInfo} /> 
-                  }
+                  {isEmptyObject(item) && <ItemInfoLoader/>}
+                  {!isEmptyObject(item) && <WooInfoModalBody resourceId={resourceId} item={item} />}
               </Modal.Body>
               <Modal.Footer>
-                  <Button onClick={this.closeViewModal} bsStyle="primary">Close</Button>
+                  <Button onClick={this.closeViewModal} bsStyle="warning">Close</Button>
               </Modal.Footer>
           </Modal>
     );
   }
-
-  render() {
-    const {resourceId,visible,itemInfo,visibleLoader} = this.props;
-    return this.renderModal(visible, resourceId, itemInfo, visibleLoader);
-  }
-
 }
 
 WooInfoModal.propTypes = {
-  visible: PropTypes.bool.isRequired,
+  isVisible: PropTypes.bool.isRequired,
   resourceId: PropTypes.number.isRequired,
-  itemInfo: PropTypes.object.isRequired,
-  visibleLoader: PropTypes.bool.isRequired,
+  item: PropTypes.object.isRequired,
   actions: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
-    let visibleLoader = false;
-    let resourceId = state.modal.view.resourceId;
-    let itemInfo = {};
-    if (resourceId > -1){
-      itemInfo = state.reducer_resources.find(x=>x.id === resourceId).view.item;
-      visibleLoader = state.reducer_resources.find(x=>x.id === resourceId).view.visibleLoader;
-    } 
     return {
-        visible: state.modal.view.visible,
-        resourceId: resourceId,
-        itemInfo: itemInfo,
-        visibleLoader: visibleLoader
+        resourceId: state.modal.view.resourceId,
+        item: state.modal.view.item,
+        isVisible: state.modal.view.visible      
     };
 }
 

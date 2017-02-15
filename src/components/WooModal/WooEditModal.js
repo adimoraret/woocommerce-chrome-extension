@@ -4,6 +4,9 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import config from '../../config/config';
 import * as modalAction from '../../actions/wooModalActions';
+import WooEditModalBody from './WooEditModalBody';
+import ItemInfoLoader from '../Common/ItemInfoLoader';
+import {isEmptyObject} from '../Common/Helper';
 
 class WooEditModal extends React.Component {
   constructor(props, context) {
@@ -16,23 +19,24 @@ class WooEditModal extends React.Component {
   }
   
   render() {
-    const {isVisible, resourceId} = this.props;
+    const {isVisible, resourceId, item} = this.props;
     const selectedResource = config.resources.find(x => x.id === resourceId);
     if (selectedResource == null) {
       return null;
     }
     const title = selectedResource.edit.title;
     return(
-      <Modal show={isVisible} onHide={this.closeEditModal}>
+      <Modal show={isVisible} onHide={this.closeEditModal} bsSize="large">
           <Modal.Header closeButton>
               <Modal.Title>{title}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <div>TODO</div>
-             {/*<WooInfoModalBody resourceId={resourceId} resourceItemInfo={itemInfo} />*/} 
+             {isEmptyObject(item) && <ItemInfoLoader />}
+             {!isEmptyObject(item) && <WooEditModalBody resourceId={resourceId} item={item}/>}
           </Modal.Body>
           <Modal.Footer>
-              <Button onClick={this.closeEditModal} bsStyle="primary">Close</Button>
+              <Button onClick={this.closeEditModal} bsStyle="warning">Close</Button>
+              <Button onClick={this.closeEditModal} bsStyle="primary">Save</Button>              
           </Modal.Footer>
       </Modal>
     );
@@ -42,12 +46,14 @@ class WooEditModal extends React.Component {
 WooEditModal.propTypes = {
   resourceId: PropTypes.number.isRequired,
   isVisible: PropTypes.bool.isRequired,
-  actions: PropTypes.object.isRequired
+  actions: PropTypes.object.isRequired,
+  item: PropTypes.object.isRequired
 };
 
 function mapStateToProps(state, ownProps) {
   return {
     resourceId: state.modal.edit.resourceId,
+    item: state.modal.edit.item,
     isVisible: state.modal.edit.visible
   };
 }

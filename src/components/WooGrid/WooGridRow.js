@@ -2,7 +2,6 @@ import React, {PropTypes} from 'react';
 import {connect} from 'react-redux';
 import config from '../../config/config';
 import {bindActionCreators} from 'redux';
-import * as wooActions from '../../actions/wooResourceActions';
 import * as modalAction from '../../actions/wooModalActions';
 
 class WooGridRow extends React.Component {
@@ -23,14 +22,14 @@ class WooGridRow extends React.Component {
 
   openViewModal(){
     const selectedResource = config.resources.find(x => x.id === this.props.resourceId);
-    this.props.actions.openViewModal(this.props.resourceId);    
-    this.props.actions.showInfoLoader(selectedResource.id);
-    this.props.actions.loadWooResourceInfo(selectedResource.id, this.props.row["id"]);
+    this.props.actions.openViewModal(selectedResource.id);    
+    this.props.actions.loadWooResourceViewModal(selectedResource.id, this.props.row["id"]);
   }
 
   openEditModal(){
     const selectedResource = config.resources.find(x => x.id === this.props.resourceId);
-    this.props.actions.openEditModal(selectedResource.id);   
+    this.props.actions.openEditModal(selectedResource.id);
+    this.props.actions.loadWooResourceEditModal(selectedResource.id, this.props.row["id"]);
   }
 
   render() {
@@ -82,7 +81,7 @@ function mapStateToProps(state, ownProps) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(Object.assign({}, wooActions, modalAction), dispatch)
+    actions: bindActionCreators(modalAction, dispatch)
   };
 }
 

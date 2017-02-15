@@ -22,16 +22,6 @@ export default function resourceReducer(state = initialState.resources, action) 
         newState[index].list.appliedSort = action.resource.appliedSort;
         return true;
       }
-      if (action.type === `${resource.name}_INFO_CLEAR`) {
-        newState[index].view.visibleLoader = true;
-        newState[index].view.item = {};
-        return true;
-      }      
-      if (action.type === `${resource.name}_INFO_SUCCESS`) {
-        newState[index].view.item = action.resource.item;
-        newState[index].view.visibleLoader = false;
-        return true;
-      }
       return false;
     }
   );

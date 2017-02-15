@@ -30,21 +30,5 @@ describe('Resource Reducer', () => {
     expect(actual[0].list.appliedFilter).toEqual(action.resource.appliedFilter);
     expect(actual[0].list.appliedSort).toEqual(action.resource.appliedSort);    
   });
-
-  it('should return empty resource info when passed PRODUCT_INFO_CLEAR', () => {
-    const action = {type: "PRODUCT_INFO_CLEAR", resource: null};
-    const actual = resourceReducer(mother.RESOURCE_INITIAL_STATE, action);
-    expect(actual[0].view.visibleLoader).toEqual(true);
-    expect(actual[0].view.item).toEqual({});
-  });
-
-  it('should return resource item when passed PRODUCT_INFO_SUCCESS', () => {
-    const action = {type: "PRODUCT_INFO_SUCCESS", resource: {
-      item: {name: "Product1"},
-    }};
-    const newState = resourceReducer(mother.RESOURCE_INITIAL_STATE, action);
-    expect(newState[0].view.visibleLoader).toEqual(false);
-    expect(newState[0].view.item).toEqual({name: "Product1"});    
-  });
  
 });

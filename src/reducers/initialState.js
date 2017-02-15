@@ -5,11 +5,13 @@ export default {
   modal: {
     view: {
       visible: false,
-      resourceId: -1
+      resourceId: -1,
+      item:{}
     },
     edit: {
       visible: false,
-      resourceId: -1
+      resourceId: -1,
+      item:{}
     }
   }
 };

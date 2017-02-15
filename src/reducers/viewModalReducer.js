@@ -8,10 +8,17 @@ export default function viewModalReducer(state = initialState.modal.view, action
           visible: true,
           resourceId: action.resourceId
       });
+    case types.VIEW_MODAL_ACTION.LOAD:
+      return Object.assign({}, state, {
+        visible: true,
+        resourceId: action.resource.resourceId,
+        item: action.resource.item
+      });      
     case types.VIEW_MODAL_ACTION.CLOSE:
       return Object.assign({}, state, {
           visible: false,
-          resourceId: -1
+          resourceId: -1,
+          item: {}
       });
     default:
       return state;

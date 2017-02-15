@@ -1,6 +1,7 @@
 import expect from 'expect';
 import editModalReducer from '../../src/reducers/editModalReducer';
 import * as modalAction  from '../../src/actions/wooModalActions';
+import * as types from '../../src/actions/actionTypes';
 
 describe('Edit Modal Reducer', () => {
   it('should Open Edit Modal when passed OPEN_EDIT_MODAL', () => {
@@ -23,7 +24,21 @@ describe('Edit Modal Reducer', () => {
     const actual = editModalReducer(initialState, action);
     expect(actual.visible).toEqual(false);
     expect(actual.resourceId).toEqual(-1);
+    expect(actual.item).toEqual({});
   });
+
+  it('should Load Edit Modal Information when passed EDIT_MODAL_INFO_LOAD', () => {
+    const initialState = {
+      visible: false,
+      resourceId: 982
+    };
+    const expected = {resourceId:123, item:{}};
+    const action = {type: types.EDIT_MODAL_ACTION.LOAD, resource: expected};
+    const actual = editModalReducer(initialState, action);
+    expect(actual.visible).toEqual(true);
+    expect(actual.resourceId).toEqual(expected.resourceId);
+    expect(actual.item).toEqual(expected.item);
+  });  
 
   it ('should return default state when passing invalid action', () => {
     const initialState = {

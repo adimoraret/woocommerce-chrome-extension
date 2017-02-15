@@ -9,7 +9,7 @@ class WooInfoModalBody extends React.Component {
   }
 
   render(){
-    const {resourceItemInfo, resourceId} = this.props;
+    const {item, resourceId} = this.props;
     const resourceConfig = config.resources.find(x=>x.id === resourceId);
     const properties = resourceConfig.view.visible_properties;
     return(
@@ -20,7 +20,7 @@ class WooInfoModalBody extends React.Component {
                   {property.displayName}
                 </Col>
                 <Col sm={10}>
-                  <FormControl placeholder={resourceItemInfo[property.fieldName]} readOnly />
+                  <FormControl placeholder={item[property.fieldName]} readOnly />
                 </Col>
               </FormGroup>
             )}
@@ -31,7 +31,7 @@ class WooInfoModalBody extends React.Component {
 
 WooInfoModalBody.propTypes = {
   resourceId: PropTypes.number.isRequired,
-  resourceItemInfo: PropTypes.object.isRequired
+  item: PropTypes.object.isRequired
 };
 
 
